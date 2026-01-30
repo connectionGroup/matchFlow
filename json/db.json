@@ -1,27 +1,50 @@
 {
   "users": [
     {
-      "id": "1",
-      "email": "leah@mail.com",
-      "password": "123456",
+      "id": "4df9",
+      "firstName": "Diego",
+      "lastName": "Alejandro",
+      "email": "email@email.com",
       "role": "candidate",
-      "candidateId": "1"
+      "password": "123",
+      "status": true
     },
     {
-      "id": "2",
-      "email": "techcorp@mail.com",
-      "password": "123456",
+      "id": "24b7",
+      "firstName": "Vero",
+      "lastName": "Martinez",
+      "email": "mail@email.com",
+      "role": "candidate",
+      "password": "123",
+      "status": true
+    },
+    {
+      "id": "2105",
+      "firstName": "Comp",
+      "lastName": "Any",
+      "email": "email@company.com",
       "role": "company",
-      "companyId": "1"
+      "password": "123",
+    },
+    {
+      "id": "695f",
+      "firstName": "Enter",
+      "lastName": "Prise",
+      "email": "email@enterprise.com",
+      "role": "company",
+      "password": "123"
     }
   ],
-
   "candidates": [
     {
       "id": "1",
       "fullName": "Leah Maria",
       "title": "Frontend Developer",
-      "skills": ["HTML", "CSS", "JavaScript"],
+      "skills": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
       "experience": "2 years",
       "openToWork": true,
       "contact": {
@@ -30,7 +53,6 @@
       }
     }
   ],
-
   "companies": [
     {
       "id": "1",
@@ -41,10 +63,9 @@
       "logo": "https://www.svgrepo.com/show/303106/mcdonald-s-15-logo.svg"
     }
   ],
-
   "jobOffers": [
     {
-      "id": 1,
+      "id": "1",
       "companyId": "1",
       "title": "Frontend Developer",
       "modality": "Remote - Full Time",
@@ -52,7 +73,7 @@
       "status": "open"
     },
     {
-      "id": 2,
+      "id": "2",
       "companyId": "1",
       "title": "Backend Developer",
       "modality": "Remote - Part Time",
@@ -60,7 +81,6 @@
       "status": "open"
     }
   ],
-
   "matches": [
     {
       "id": "1",
@@ -70,7 +90,6 @@
       "status": "pending"
     }
   ],
-
   "reservations": [
     {
       "id": "1",

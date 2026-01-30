@@ -1,12 +1,12 @@
-import * as storage from "./storage"
+import * as storage from "./storage.js"
 
 document.addEventListener("DOMContentLoaded", () => {
     let loggedUser = JSON.parse(sessionStorage.getItem("loggedUser"))
     if (loggedUser) {
-        if (loggedUser.rol === "candidate") {
-            window.location.href = "./../pages/candidateHome"
+        if (loggedUser.role === "candidate") {
+            window.location.href = "./../pages/candidateHome.html"
         } else {
-            window.location.href = "./../pages/companyHome"
+            window.location.href = "./../pages/companyHome.html"
         }
     }
 })
@@ -28,8 +28,12 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
         miModal.show();
         return false
     }
+    if (data.rol === "company") {
+        await storage.saveUser(data)
+    } else {
+        await storage.saveUser({...data, status: true})
+    }
 
-    await storage.saveUser({...data, status: true})
 
 
 })
