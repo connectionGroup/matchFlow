@@ -1,21 +1,83 @@
 {
-  "candidates": [
+  "users": [
     {
-      "id": "12312",
-      "name": "choklitos",
-      "email": "email@email.com",
-      "password": "1234",
-      "status": true,
-      "matches": []
+      "id": "1",
+      "email": "leah@mail.com",
+      "password": "123456",
+      "role": "candidate",
+      "candidateId": "1"
+    },
+    {
+      "id": "2",
+      "email": "techcorp@mail.com",
+      "password": "123456",
+      "role": "company",
+      "companyId": "1"
     }
   ],
-  "companies" : [
+
+  "candidates": [
     {
-      "id": "12312",
-      "name": "choklitos",
-      "email": "email@email.com",
-      "password": "1234",
-      "jobs" : []
+      "id": "1",
+      "fullName": "Leah Maria",
+      "title": "Frontend Developer",
+      "skills": ["HTML", "CSS", "JavaScript"],
+      "experience": "2 years",
+      "openToWork": true,
+      "contact": {
+        "phone": "+573001234567",
+        "whatsapp": "https://wa.me/573001234567"
+      }
+    }
+  ],
+
+  "companies": [
+    {
+      "id": "1",
+      "name": "TechCorp",
+      "industry": "The Industry",
+      "description": "TechCorp is a technology-driven company focused on developing high-quality software solutions. We work with distributed teams and value autonomy, collaboration, and continuous learning.",
+      "catchPhrase": "Building scalable digital products for modern businesses.",
+      "logo": "https://www.svgrepo.com/show/303106/mcdonald-s-15-logo.svg"
+    }
+  ],
+
+  "jobOffers": [
+    {
+      "id": 1,
+      "companyId": "1",
+      "title": "Frontend Developer",
+      "modality": "Remote - Full Time",
+      "details": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem explicabo minus iure, ex praesentium temporibus exercitationem molestiae, repellat debitis sed quas fuga quo ipsa sapiente laboriosam, cumque quos eaque eligendi.",
+      "status": "open"
+    },
+    {
+      "id": 2,
+      "companyId": "1",
+      "title": "Backend Developer",
+      "modality": "Remote - Part Time",
+      "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Error eius laudantium ad laboriosam dolores dolorem perspiciatis maiores harum aliquam voluptas consectetur sint quis, neque officia exercitationem, repellendus officiis debitis repellat?",
+      "status": "open"
+    }
+  ],
+
+  "matches": [
+    {
+      "id": "1",
+      "companyId": "1",
+      "jobOfferId": "1",
+      "candidateId": "1",
+      "status": "pending"
+    }
+  ],
+
+  "reservations": [
+    {
+      "id": "1",
+      "candidateId": "1",
+      "companyId": "1",
+      "jobOfferId": "1",
+      "active": true
     }
   ]
 }

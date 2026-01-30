@@ -6,6 +6,8 @@
   --light: #f8f9fc;
   --gray: #6b7280;
   --border-radius: 12px;
+  --bs-primary-rgb: #6c5ce7;
+  --bs-text-opacity: 0.8;
 }
 
 * {
@@ -134,3 +136,9 @@ li a{
   font-size: 0.85rem;
   color: #cbd5e1;
 }
+
+.text-primary {
+  --bs-text-opacity: 1;
+  color: var(--bs-primary-rgb) !important;
+}
+
