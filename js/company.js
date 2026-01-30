@@ -2,14 +2,15 @@ import { saveData } from "./../js/utils.js";
 
 saveData();
 
-const outputProfile = document.getElementById('profile');
-const outputOffers = document.getElementById('jobs-grid')
+const outputProfile = document.getElementById("profile");
+const outputOffers = document.getElementById("jobs-grid");
 
 function renderProfile(company) {
-    const profile = document.createElement('section');
-    const jobs = company.jobs;
-    
-    profile.innerHTML = `<section class="company-header">
+  const profile = document.createElement("section");
+  profile.classList.add("company");
+  const jobs = company.jobs;
+
+  profile.innerHTML = `<section class="company-header">
         <article class="company-info">
           <img class="company-logo" src=${company.logo} alt="">
           <div>
@@ -26,26 +27,36 @@ function renderProfile(company) {
         <p>
           ${company.description}
         </p>
-      </section>`
+      </section>`;
 
-    outputProfile.appendChild(profile)
+  outputProfile.appendChild(profile);
 
-      jobs.forEach(job => {
-        const jobOffer = document.createElement('section');
-        jobOffer.classList.add('job-card');
+  jobs.forEach((job) => {
+    const jobOffer = document.createElement("section");
+    jobOffer.classList.add("job-card");
+    const buttons = document.createElement("section");
+    const btnEdit = document.createElement("button");
+    const btnDelete = document.createElement("button");
+    buttons.classList.add("actions");
 
-        jobOffer.innerHTML = `
+    jobOffer.innerHTML = `
             <h3>${job.title}</h3>
-            <p>${job.details}</p>`
+            <h5>${job.modality}</h5>
+            <p>${job.details}</p>`;
 
-        outputOffers.appendChild(jobOffer)
-      });
+    btnEdit.innerHTML = `Edit<img src="./../assets/edit.svg">`;
+    btnDelete.innerHTML = `Delete<img src="./../assets/trash.svg">`;
 
-      
+    buttons.appendChild(btnDelete);
+    buttons.appendChild(btnEdit);
+
+    jobOffer.appendChild(buttons);
+
+    outputOffers.appendChild(jobOffer);
+  });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const companyInfo = JSON.parse(localStorage.getItem('companyInfo'));
-    renderProfile(companyInfo)
-}
-)
+document.addEventListener("DOMContentLoaded", () => {
+  const companyInfo = JSON.parse(localStorage.getItem("companyInfo"));
+  renderProfile(companyInfo);
+});
