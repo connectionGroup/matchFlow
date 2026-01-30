@@ -1,14 +1,17 @@
 import { saveData } from "./../js/utils.js";
+import { fetchCompanies, fetchJobOffers } from "./storage.js";
+import { getCompany, getOffers } from "./utils.js";
 
 saveData();
+
 
 const outputProfile = document.getElementById("profile");
 const outputOffers = document.getElementById("jobs-grid");
 
-function renderProfile(company) {
+function renderProfile(company, offers) {
+    console.log(offers)
   const profile = document.createElement("section");
   profile.classList.add("company");
-  const jobs = company.jobs;
 
   profile.innerHTML = `<section class="company-header">
         <article class="company-info">
@@ -31,7 +34,7 @@ function renderProfile(company) {
 
   outputProfile.appendChild(profile);
 
-  jobs.forEach((job) => {
+  offers.forEach((job) => {
     const jobOffer = document.createElement("section");
     jobOffer.classList.add("job-card");
     const buttons = document.createElement("section");
@@ -67,7 +70,14 @@ function createOffer() {
   modal.style.display = "block";
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const companyInfo = JSON.parse(localStorage.getItem("companyInfo"));
-  renderProfile(companyInfo);
+document.addEventListener("DOMContentLoaded", async() => {
+  const companies = await fetchCompanies();
+  const offers = await fetchJobOffers();
+
+  const companyId = "1"; // CAMBIARLO LUEGO A SESSION
+
+  const companyInfo = getCompany(companies, companyId);
+  const companyOffers = getOffers(offers, companyId);
+
+  renderProfile(companyInfo, companyOffers);
 });
