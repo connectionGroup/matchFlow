@@ -26,14 +26,13 @@
       <section class="company-jobs">
         <section class="jobs-header">
           <h2>Job Offers</h2>
-          <button class="btn btn-primary">Create Job Offer</button>
+          <button id="new-offer" class="btn btn-primary">Create Job Offer</button>
         </section>
 
         <article id="jobs-grid" class="jobs-grid">
           <!-- Job Offers Renderization -->
         </article>
       </section>
-    
 
     </main>
 
@@ -72,6 +71,40 @@
         <p>© 2026 MatchFlow. All rights reserved.</p>
       </div>
     </footer>
+
+    <section id="createModal" class="modal">
+      <section class="modal-content">
+        <span class="close">&times;</span>
+        <h3>New Job Offer</h3>
+        <form id="create-form">
+          <label
+            >Title
+            <input name="title" id="job-title" type="text" />
+          </label>
+
+          <label
+            >Description
+            <textarea name="description" id="job-description"></textarea>
+          </label>
+
+          <label
+            >Modality
+            <select name="modality" id="job-modality">
+              <option value="remote-full">Remote - Full Time</option>
+              <option value="hybrid-full">Hybrid - Full Time</option>
+              <option value="site-full">In Site - Full Time</option>
+              <option value="remote-part">Remote - Part Time</option>
+              <option value="hybrid-part">Hybrid - Part Time</option>
+              <option value="site-part">In Site - Part Time</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+
+          <button class="btn btn-primary" id="create-offer" type="submit">Save</button>
+        </form>
+      </section>
+    </section>
+
     <script type="module" src="./../js/company.js"></script>
   </body>
 </html>

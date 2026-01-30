@@ -56,6 +56,17 @@ function renderProfile(company) {
   });
 }
 
+const createBtn = document.getElementById('new-offer');
+
+createBtn.addEventListener('click', () => {
+    createOffer()
+})
+
+function createOffer() {
+  const modal = document.getElementById("createModal");
+  modal.style.display = "block";
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const companyInfo = JSON.parse(localStorage.getItem("companyInfo"));
   renderProfile(companyInfo);
