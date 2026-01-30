@@ -31,5 +31,4 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
 
     await storage.saveUser({...data, status: true})
 
-
 })
