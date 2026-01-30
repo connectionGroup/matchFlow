@@ -22,20 +22,32 @@ export async function saveOffer(offer){
   return response.json();
 }
 
-export async function updateOffer(offerId, updatedFields) {
-  const response = await fetch(`${API_URL}/jobOffers/${offerId}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(updatedFields)
-  });
+export async function patchOffer(offerId, updatedFields) {
+  try {
+    const response = await fetch(`${API_URL}/jobOffers/${offerId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(updatedFields)
+    });
 
-  return response.json();
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error in patchOffer:", error);
+    throw error;
+  }
 }
 
+
 export async function deleteJobOffer(offerId) {
-  await fetch(`${API_URL}/jobOffers/${offerId}`, {
+  const deleted = await fetch(`${API_URL}/jobOffers/${offerId}`, {
     method: "DELETE"
   });
+
+  return await deleted.json();
 }
