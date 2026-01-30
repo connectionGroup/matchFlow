@@ -1,15 +1,32 @@
-import { saveData } from "./../js/utils.js";
-import { fetchCompanies, fetchJobOffers } from "./storage.js";
+import {
+  fetchCompanies,
+  fetchJobOffers,
+  saveOffer,
+  updateOffer,
+  deleteJobOffer,
+} from "./storage.js";
 import { getCompany, getOffers } from "./utils.js";
-
-saveData();
-
 
 const outputProfile = document.getElementById("profile");
 const outputOffers = document.getElementById("jobs-grid");
 
+const createBtn = document.getElementById("new-offer");
+
+const modal = document.getElementById("createModal");
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const companies = await fetchCompanies();
+  const offers = await fetchJobOffers();
+
+  const companyId = "1"; // CAMBIARLO LUEGO A SESSION
+
+  const companyInfo = getCompany(companies, companyId);
+  const companyOffers = getOffers(offers, companyId);
+
+  renderProfile(companyInfo, companyOffers);
+});
+
 function renderProfile(company, offers) {
-    console.log(offers)
   const profile = document.createElement("section");
   profile.classList.add("company");
 
@@ -40,6 +57,8 @@ function renderProfile(company, offers) {
     const buttons = document.createElement("section");
     const btnEdit = document.createElement("button");
     const btnDelete = document.createElement("button");
+    btnEdit.classList.add("edit-btn");
+    btnDelete.classList.add("delete-btn");
     buttons.classList.add("actions");
 
     jobOffer.innerHTML = `
@@ -59,25 +78,47 @@ function renderProfile(company, offers) {
   });
 }
 
-const createBtn = document.getElementById('new-offer');
-
-createBtn.addEventListener('click', () => {
-    createOffer()
-})
+createBtn.addEventListener("click", () => {
+  createOffer();
+});
 
 function createOffer() {
-  const modal = document.getElementById("createModal");
   modal.style.display = "block";
 }
 
-document.addEventListener("DOMContentLoaded", async() => {
-  const companies = await fetchCompanies();
-  const offers = await fetchJobOffers();
-
-  const companyId = "1"; // CAMBIARLO LUEGO A SESSION
-
-  const companyInfo = getCompany(companies, companyId);
-  const companyOffers = getOffers(offers, companyId);
-
-  renderProfile(companyInfo, companyOffers);
+document.addEventListener("click", (e) => {
+  if (e.target.matches(".delete-btn")) {
+    // const offerId = e.target.dataset.id;
+    deleteOffer(1);
+  }
 });
+
+const form = document.getElementById("create-form");
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  //   const newOffer = new FormData(form);
+  const newOffer = {
+    id: "3",
+    companyId: "1",
+    title: "Frontend Developer",
+    modality: "Remote - Full Time",
+    details:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem explicabo minus iure, ex praesentium temporibus exercitationem molestiae, repellat debitis sed quas fuga quo ipsa sapiente laboriosam, cumque quos eaque eligendi.",
+    status: "open",
+  };
+
+  const createdOffer = await saveOffer(newOffer);
+  console.log("Creada:", createdOffer);
+  //   saveOffer(newOffer);
+  modal.style.display = "none";
+});
+
+async function deleteOffer(offerId) {
+  if (!offerId) return;
+
+//   const confirmDelete = confirm("¿Seguro que deseas eliminar esta oferta?");
+//   if (!confirmDelete) return;
+
+  await deleteJobOffer(offerId);
+  console.log("Oferta eliminada");
+}

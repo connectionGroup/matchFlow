@@ -15,7 +15,6 @@
       "companyId": "1"
     }
   ],
-
   "candidates": [
     {
       "id": "1",
@@ -30,7 +29,6 @@
       }
     }
   ],
-
   "companies": [
     {
       "id": "1",
@@ -41,10 +39,9 @@
       "logo": "https://www.svgrepo.com/show/303106/mcdonald-s-15-logo.svg"
     }
   ],
-
   "jobOffers": [
     {
-      "id": 1,
+      "id": "1",
       "companyId": "1",
       "title": "Frontend Developer",
       "modality": "Remote - Full Time",
@@ -52,31 +49,37 @@
       "status": "open"
     },
     {
-      "id": 2,
+      "id": "2",
       "companyId": "1",
       "title": "Backend Developer",
       "modality": "Remote - Part Time",
       "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Error eius laudantium ad laboriosam dolores dolorem perspiciatis maiores harum aliquam voluptas consectetur sint quis, neque officia exercitationem, repellendus officiis debitis repellat?",
       "status": "open"
+    },
+    {
+      "id": "3",
+      "companyId": "1",
+      "title": "Frontend Developer",
+      "modality": "Remote - Full Time",
+      "details": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem explicabo minus iure, ex praesentium temporibus exercitationem molestiae, repellat debitis sed quas fuga quo ipsa sapiente laboriosam, cumque quos eaque eligendi.",
+      "status": "open"
     }
   ],
-
   "matches": [
     {
       "id": "1",
       "companyId": "1",
-      "jobOfferId": "1",
+      "jobOfferId": null,
       "candidateId": "1",
       "status": "pending"
     }
   ],
-
   "reservations": [
     {
       "id": "1",
       "candidateId": "1",
       "companyId": "1",
-      "jobOfferId": "1",
+      "jobOfferId": null,
       "active": true
     }
   ]
