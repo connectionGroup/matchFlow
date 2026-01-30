@@ -1,0 +1,21 @@
+{
+  "candidates": [
+    {
+      "id": "12312",
+      "name": "choklitos",
+      "email": "email@email.com",
+      "password": "1234",
+      "status": true,
+      "matches": []
+    }
+  ],
+  "companies" : [
+    {
+      "id": "12312",
+      "name": "choklitos",
+      "email": "email@email.com",
+      "password": "1234",
+      "jobs" : []
+    }
+  ]
+}
