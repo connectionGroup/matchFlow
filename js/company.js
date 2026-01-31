@@ -3,7 +3,7 @@ import {
   fetchJobOffers,
   saveOffer,
   deleteJobOffer,
-  patchOffer
+  patchOffer,
 } from "./storage.js";
 import { getCompany, getOffers, currentCompany } from "./utils.js";
 
@@ -17,7 +17,7 @@ const modal = document.getElementById("createModal");
 const companyObj = currentCompany();
 const companyId = companyObj.id;
 
-let currentCardId = null
+let currentCardId = null;
 
 document.addEventListener("DOMContentLoaded", async () => {
   const companies = await fetchCompanies();
@@ -75,7 +75,7 @@ function renderOffers(offers) {
 
     jobOffer.innerHTML = `
             <h3>${job.title}</h3>
-            <h5>${job.modality}</h5>
+            <section class='job-subtitle'> <h5>${getModalityLabel(job.modality)}</h5><span class="badge rounded-pill text-bg-success">${job.status}</span></section>
             <p>${job.details}</p>`;
 
     jobOffer.dataset.id = job.id;
@@ -92,12 +92,35 @@ function renderOffers(offers) {
   });
 }
 
+function getModalityLabel(value) {
+  const modalityMap = {
+    "remote-fulltime": "Remote - Full Time",
+    "hybrid-fulltime": "Hybrid - Full Time",
+    "site-fulltime": "In Site - Full Time",
+    "remote-parttime": "Remote - Part Time",
+    "hybrid-parttime": "Hybrid - Part Time",
+    "site-parttime": "In Site - Part Time",
+    "other": "Other"
+  };
+
+  return modalityMap[value] || value;
+}
+
 createBtn.addEventListener("click", () => {
   offerModal(false);
 });
 
+function setSelectValueAndLock(select, value) {
+  select.value = value;
+
+  Array.from(select.options).forEach((option) => {
+    option.disabled = option.value !== value;
+  });
+}
+
 function offerModal(mode, card) {
   modal.style.display = "block";
+  setSelectValueAndLock(document.getElementById("job-status"), "open");
 
   const span = document.getElementsByClassName("close")[0];
   span.addEventListener("click", function () {
@@ -111,6 +134,10 @@ function offerModal(mode, card) {
   });
 
   if (mode) {
+    const select = document.getElementById("job-status")
+    Array.from(select.options).forEach((option) => {
+      option.disabled = false;
+    });
     modal.querySelector("h3").innerHTML = "Update Job Offer";
     const jobTitle = document.getElementById("job-title");
     const jobDescription = document.getElementById("job-description");
@@ -132,8 +159,6 @@ outputOffers.addEventListener("click", async (e) => {
   const editBtn = e.target.closest(".edit-btn");
   const card = e.target.closest(".job-card");
   currentCardId = card.dataset.id;
-  console.log(currentCardId)
-  alert('wait')
 
   if (deleteBtn) {
     await deleteOffer(currentCardId);
@@ -150,19 +175,13 @@ form.addEventListener("submit", (event) => {
   const offer = new FormData(form);
   if (modal.querySelector("h3").textContent === "New Job Offer") {
     createOffer(getInput(offer));
+  } else {
+    updateOffer(currentCardId, getInput(offer));
   }
-  else{
-    console.log(currentCardId)
-    alert('wait')
-    updateOffer(currentCardId,getInput(offer))
-  }
-  // alert("wait");
-  
-
   modal.style.display = "none";
 });
 
-function getInput(inputOffer){
+function getInput(inputOffer) {
   const offer = { companyId };
 
   for (const [key, value] of inputOffer) {
@@ -170,11 +189,10 @@ function getInput(inputOffer){
   }
 
   offer["status"] = "open";
-  return offer
+  return offer;
 }
 
 function createOffer(offer) {
-  
   saveNewOffer(offer);
 }
 
