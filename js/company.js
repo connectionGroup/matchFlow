@@ -3,6 +3,7 @@ import {
   fetchJobOffers,
   saveOffer,
   deleteJobOffer,
+  patchOffer
 } from "./storage.js";
 import { getCompany, getOffers, currentCompany } from "./utils.js";
 
@@ -14,17 +15,17 @@ const createBtn = document.getElementById("new-offer");
 const modal = document.getElementById("createModal");
 
 const companyObj = currentCompany();
-const companyEmail = companyObj.email;
+const companyId = companyObj.id;
+
+let currentCardId = null
 
 document.addEventListener("DOMContentLoaded", async () => {
   const companies = await fetchCompanies();
   const jobOffers = await fetchJobOffers();
 
-  const company = companies.filter(comp => comp.email === companyEmail);
+  const company = companies.filter((comp) => comp.id === companyId);
 
-  const companyId = company[0].id;
-
-  const offers = jobOffers.filter(offer => offer.companyId === companyId)
+  const offers = jobOffers.filter((offer) => offer.companyId === companyId);
 
   const companyInfo = getCompany(company, companyId);
   const companyOffers = getOffers(offers, companyId);
@@ -92,11 +93,35 @@ function renderOffers(offers) {
 }
 
 createBtn.addEventListener("click", () => {
-  createOffer();
+  offerModal(false);
 });
 
-function createOffer() {
+function offerModal(mode, card) {
   modal.style.display = "block";
+
+  const span = document.getElementsByClassName("close")[0];
+  span.addEventListener("click", function () {
+    modal.style.display = "none";
+  });
+
+  window.addEventListener("click", function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  });
+
+  if (mode) {
+    modal.querySelector("h3").innerHTML = "Update Job Offer";
+    const jobTitle = document.getElementById("job-title");
+    const jobDescription = document.getElementById("job-description");
+    const jobModality = document.getElementById("job-modality");
+    const oldTitle = card.querySelector("h3").innerHTML;
+    const oldDescription = card.querySelector("p").innerHTML.trim();
+    const oldModality = card.querySelector("h5").innerHTML;
+    jobTitle.value = oldTitle;
+    jobDescription.value = oldDescription;
+    jobModality.value = oldModality.replace(/ /g, "").toLowerCase();
+  }
 }
 
 outputOffers.addEventListener("click", async (e) => {
@@ -105,27 +130,57 @@ outputOffers.addEventListener("click", async (e) => {
 
   const deleteBtn = e.target.closest(".delete-btn");
   const editBtn = e.target.closest(".edit-btn");
+  const card = e.target.closest(".job-card");
+  currentCardId = card.dataset.id;
+  console.log(currentCardId)
+  alert('wait')
+
+  if (deleteBtn) {
+    await deleteOffer(currentCardId);
+  }
+
+  if (editBtn) {
+    offerModal(true, card);
+  }
 });
 
 const form = document.getElementById("create-form");
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  //   const newOffer = new FormData(form);
-  // const newOffer = {
-  //   id: "3",
-  //   companyId: "1",
-  //   title: "Frontend Developer",
-  //   modality: "Remote - Full Time",
-  //   details:
-  //     "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem explicabo minus iure, ex praesentium temporibus exercitationem molestiae, repellat debitis sed quas fuga quo ipsa sapiente laboriosam, cumque quos eaque eligendi.",
-  //   status: "open",
-  // };
+  const offer = new FormData(form);
+  if (modal.querySelector("h3").textContent === "New Job Offer") {
+    createOffer(getInput(offer));
+  }
+  else{
+    console.log(currentCardId)
+    alert('wait')
+    updateOffer(currentCardId,getInput(offer))
+  }
+  // alert("wait");
+  
 
-  // const createdOffer =  saveOffer(newOffer);
-
-  //   saveOffer(newOffer);
   modal.style.display = "none";
 });
+
+function getInput(inputOffer){
+  const offer = { companyId };
+
+  for (const [key, value] of inputOffer) {
+    offer[key] = value;
+  }
+
+  offer["status"] = "open";
+  return offer
+}
+
+function createOffer(offer) {
+  
+  saveNewOffer(offer);
+}
+
+async function saveNewOffer(offer) {
+  await saveOffer(offer);
+}
 
 async function updateOffer(offerId, data) {
   try {
@@ -137,10 +192,5 @@ async function updateOffer(offerId, data) {
 
 async function deleteOffer(offerId) {
   if (!offerId) return;
-
-  //   const confirmDelete = confirm("¿Seguro que deseas eliminar esta oferta?");
-  //   if (!confirmDelete) return;
-
   return await deleteJobOffer(offerId);
-  // console.log("Oferta eliminada");
 }
