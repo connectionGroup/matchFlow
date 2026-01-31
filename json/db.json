@@ -1,0 +1,60 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "pedrito",
+      "email": "pedritole@gmail.com",
+      "password": "12345",
+      "rol": "empleado"
+    },
+    {
+      "id": "2",
+      "name": "pepe",
+      "email": "pepe@gmail.com",
+      "password": "12345",
+      "rol": "empleador"
+    }
+  ],
+  "openToWork": [
+    {
+      "id": "1",
+      "status": "activo"
+    },
+    {
+      "id": "2",
+      "status": "inactivo"
+    }
+  ],
+  "matchStatus": [
+    {
+      "id": "1",
+      "status": "pending"
+    },
+    {
+      "id": "2",
+      "status": "contacted"
+    },
+    {
+      "id": "3",
+      "status": "interview"
+    },
+    {
+      "id": "4",
+      "status": "hired"
+    },
+    {
+      "id": "5",
+      "status": "discarded"
+    }
+  ],
+  "perfilProfesional": [
+    {
+      "id": "1",
+      "nombre": "diego",
+      "descripcion": "hola",
+      "ciudad": "envigado",
+      "edad": "20",
+      "correo": "diego@gmail.com"
+    }
+  ]
+}
