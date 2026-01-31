@@ -15,13 +15,16 @@
       "companyId": "1"
     }
   ],
-
   "candidates": [
     {
       "id": "1",
       "fullName": "Leah Maria",
       "title": "Frontend Developer",
-      "skills": ["HTML", "CSS", "JavaScript"],
+      "skills": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
       "experience": "2 years",
       "openToWork": true,
       "contact": {
@@ -30,7 +33,6 @@
       }
     }
   ],
-
   "companies": [
     {
       "id": "1",
@@ -41,7 +43,6 @@
       "logo": "https://www.svgrepo.com/show/303106/mcdonald-s-15-logo.svg"
     }
   ],
-
   "jobOffers": [
     {
       "id": 1,
@@ -60,17 +61,43 @@
       "status": "open"
     }
   ],
-
   "matches": [
     {
-      "id": "1",
-      "companyId": "1",
+      "companyId": 1,
+      "jobOfferId": "2",
+      "candidateId": "1",
+      "status": "interview",
+      "id": "AdHa1UR"
+    },
+    {
+      "companyId": 1,
       "jobOfferId": "1",
       "candidateId": "1",
-      "status": "pending"
+      "status": "pending",
+      "id": "fl588aY"
+    },
+    {
+      "companyId": 1,
+      "jobOfferId": "2",
+      "candidateId": "1",
+      "status": "contacted",
+      "id": "WJ9KPS6"
+    },
+    {
+      "companyId": 1,
+      "jobOfferId": "1",
+      "candidateId": "1",
+      "status": "interview",
+      "id": "Nlh7KVx"
+    },
+    {
+      "companyId": 1,
+      "jobOfferId": "2",
+      "candidateId": "1",
+      "status": "hired",
+      "id": "XVQB8sY"
     }
   ],
-
   "reservations": [
     {
       "id": "1",
