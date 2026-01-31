@@ -4,9 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let loggedUser = JSON.parse(sessionStorage.getItem("loggedUser"))
     if (loggedUser) {
         if (loggedUser.role === "candidate") {
-            window.location.href = "./../pages/candidateHome.html"
+            window.location.replace("./../pages/candidateHome.html")
         } else {
-            window.location.href = "./../pages/companyHome.html"
+            window.location.replace("./../pages/companyHome.html")
         }
     }
 })
@@ -28,10 +28,19 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
         miModal.show();
         return false
     }
-    if (data.rol === "company") {
+    if (data.role === "company") {
         await storage.saveUser(data)
     } else {
         await storage.saveUser({...data, status: true})
+    }
+
+    userFound = await storage.verifyUser(data)
+
+    sessionStorage.setItem("loggedUser", JSON.stringify({id: userFound.id, email: userFound.email, role: userFound.role}))
+    if (userFound.role === "candidate") {
+        window.location.replace("./../pages/registerForm.html")
+    } else {
+        window.location.replace("./../pages/companyHome.html")
     }
 
 

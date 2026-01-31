@@ -29,7 +29,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
         return false
     }
 
-    sessionStorage.setItem("loggedUser", JSON.stringify({email: userFound.email, role: userFound.role}))
+    sessionStorage.setItem("loggedUser", JSON.stringify({id: userFound.id, email: userFound.email, role: userFound.role}))
     if (userFound.role === "candidate") {
         window.location.replace("./../pages/candidateHome.html")
     } else {
