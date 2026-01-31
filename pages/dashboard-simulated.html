@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Empresa | MatchFlow</title>
+    <link rel="stylesheet" href="./../styles/shared.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h2>MatchFlow Business</h2>
+            <ul>
+                <li><a href="available-profiles.html">Buscar Talentos</a></li>
+                <li><a href="dashboard.html"><b>Mi Dashboard</b></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="dashboard-container">
+        <h1>Gestión de Candidatos Reservados</h1>
+        <p>Aquí puedes contactar a los talentos que has bloqueado para tu empresa.</p>
+
+        <div id="dashboard-grid" class="candidates-grid">
+        </div>
+    </main>
+
+    <script>
+        const API_URL = "http://localhost:3000/user";
+
+
+        async function updateStatus(id, newStatus) {
+            try {
+                const response = await fetch(`${API_URL}/${id}`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status: newStatus })
+                });
+
+                if (response.ok) {
+
+                    if (document.getElementById('candidates-grid')) renderCandidates();
+                    if (document.getElementById('dashboard-grid')) loadDashboard();
+                }
+            } catch (error) {
+                console.error("Error al actualizar:", error);
+            }
+        }
+
+
+        async function renderCandidates() {
+            const container = document.getElementById('candidates-grid');
+            if (!container) return; 
+
+            try {
+                const response = await fetch(API_URL);
+                const candidates = await response.json();
+                container.innerHTML = "";
+
+                candidates.forEach(user => {
+                    const isAvailable = user.status === "available";
+                    const card = document.createElement('div');
+                    card.className = 'candidate-card';
+                    card.innerHTML = `
+                <h3>${user.name}</h3>
+                <p class="candidate-role">Fullstack Developer</p>
+                <p class="candidate-skills">Estado: ${user.status}</p>
+                <div class="candidate-actions">
+                    ${isAvailable
+                            ? `<button class="btn btn-primary" onclick="updateStatus('${user.id}', 'reserved')">Book (Reservar)</button>`
+                            : `<span class="badge">No disponible</span>
+                           <a href="dashboard.html" class="btn btn-outline">Ver en Dashboard</a>`
+                        }
+                </div>
+            `;
+                    container.appendChild(card);
+                });
+            } catch (error) {
+                console.error("Error cargando candidatos:", error);
+            }
+        }
+
+
+        async function loadDashboard() {
+            const dashboardGrid = document.getElementById('dashboard-grid');
+            if (!dashboardGrid) return; 
+
+            try {
+                const response = await fetch(API_URL);
+                const users = await response.json();
+                const mySelection = users.filter(u => u.status !== "available");
+
+                dashboardGrid.innerHTML = "";
+                mySelection.forEach(user => {
+                    const isContacted = user.status === "contacted";
+                    const card = document.createElement('div');
+                    card.className = 'candidate-card';
+                    card.innerHTML = `
+                <h3>${user.name}</h3>
+                <p>Estado: <strong>${user.status.toUpperCase()}</strong></p>
+                <div class="candidate-actions">
+                    ${!isContacted
+                            ? `<button class="btn btn-primary" onclick="updateStatus('${user.id}', 'contacted')">Marcar como Contactado</button>`
+                            : `<a href="https://wa.me/${user.phone}" target="_blank" class="btn btn-primary" style="background:#25D366">💬 WhatsApp</a>`
+                        }
+                    <button class="btn btn-secondary" onclick="updateStatus('${user.id}', 'available')">Liberar</button>
+                </div>
+            `;
+                    dashboardGrid.appendChild(card);
+                });
+            } catch (error) {
+                console.error("Error en dashboard:", error);
+            }
+        }
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCandidates();
+            loadDashboard();
+        });
+    </script>
+</body>
+
+</html>
