@@ -55,3 +55,22 @@ export async function saveCandidate(candidate) {
         console.error('Error:', error);
     }
 }
+
+export async function saveCompany(company) {
+    try {
+        const response = await fetch('http://localhost:4001/companies', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(company)
+        });
+
+        const responseData = await response.json();
+        console.log('Success:', responseData);
+        return responseData;
+
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}

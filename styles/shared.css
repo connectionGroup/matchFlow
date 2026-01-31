@@ -160,3 +160,16 @@ li a{
   --bs-gradient: none;
 }
 
+.link-primary {
+  color: #6c5ce7 !important;
+  -webkit-text-decoration-color: #6c5ce7!important;
+  text-decoration-color: #6c5ce7 !important;
+}
+
+.link-primary:hover {
+  color: #4b4b76 !important;
+  -webkit-text-decoration-color: #4b4b76 !important;
+  text-decoration-color: #4b4b76 !important;
+  cursor: pointer !important;
+}
+

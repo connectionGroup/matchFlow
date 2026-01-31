@@ -37,3 +37,6 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     }
 })
 
+document.getElementById("goesToRegister").addEventListener("click", () => {
+    window.location.href = "./../pages/register.html"
+})

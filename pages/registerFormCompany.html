@@ -13,56 +13,41 @@
 
 <section class="vh-100 container">
     <h1 class="text-center mb-5 text-primary fw-bold">Finish your Account</h1>
-    <form id="registerFormFinish">
-        <!-- 2 column grid layout with text inputs for the first and last names -->
-        <div class="row mb-4">
-            <div class="col">
-                <div data-mdb-input-init class="form-outline">
-                    <input name="title" type="text" id="title" class="form-control" />
-                    <label class="form-label" for="title">Title</label>
-                </div>
-            </div>
-            <div class="col">
-                <div data-mdb-input-init class="form-outline">
-                    <input name="years" type="number" id="years" class="form-control" />
-                    <label class="form-label" for="years">Years of experience</label>
-                </div>
-            </div>
-        </div>
-
+    <form id="registerFormFinishCompany">
         <!-- Text input -->
         <div data-mdb-input-init class="form-outline mb-4">
-            <input class="form-control" type="tel"
-                   id="phone"
-                   name="phone"
-                   pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+            <input class="form-control" type="text"
+                   id="industry"
+                   name="industry"
                    required/>
-            <label class="form-label" for="phone">Contact Number</label>
+            <label class="form-label" for="industry">Industry</label>
         </div>
 
-        <!-- Checkbox -->
-        <h5 class="text-secondary fs-6">Choose your skills</h5>
-        <div class="btn-group form-outline mb-4" role="group" aria-label="Basic checkbox toggle button group">
-            <input value="HTML" type="checkbox" class="btn-check" id="html" autocomplete="off">
-            <label class="btn btn-outline-primary" for="html">HTML</label>
+        <div data-mdb-input-init class="form-outline mb-4">
+            <input class="form-control" type="text"
+                   id="description"
+                   name="description"
+                   required/>
+            <label class="form-label" for="description">Description</label>
+        </div>
 
-            <input value="CSS" type="checkbox" class="btn-check" id="css" autocomplete="off">
-            <label class="btn btn-outline-primary" for="css">CSS</label>
+        <div data-mdb-input-init class="form-outline mb-4">
+            <input class="form-control" type="text"
+                   id="catchPhrase"
+                   name="catchPhrase"
+                   required/>
+            <label class="form-label" for="catchPhrase">Catch Phrase</label>
+        </div>
 
-            <input value="PYTHON" type="checkbox" class="btn-check" id="python" autocomplete="off">
-            <label class="btn btn-outline-primary" for="python">PYTHON</label>
-
-            <input value="SQL" type="checkbox" class="btn-check" id="sql" autocomplete="off">
-            <label class="btn btn-outline-primary" for="sql">SQL</label>
-
-            <input value="GIT" type="checkbox" class="btn-check" id="git" autocomplete="off">
-            <label class="btn btn-outline-primary" for="git">Git</label>
-
-            <input value="JSON-Server" type="checkbox" class="btn-check" id="json-server" autocomplete="off">
-            <label class="btn btn-outline-primary" for="json-server">JSON-server</label>
-
-            <input value="JS" type="checkbox" class="btn-check" id="js" autocomplete="off">
-            <label class="btn btn-outline-primary" for="js">JS</label>
+        <div data-mdb-input-init class="form-outline mb-4">
+            <input class="form-control" type="url"
+                   id="urlImage"
+                   name="urlImage"
+                   placeholder="https://example.com"
+                   pattern="https://.*"
+                   size="30"
+                   required/>
+            <label class="form-label" for="urlImage">Company logo (url)</label>
         </div>
 
         <!-- Submit button -->
@@ -107,6 +92,6 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-<script type="module" src="./../js/registerForm.js"></script>
+<script type="module" src="./../js/registerFormCompany.js"></script>
 </body>
 </html>

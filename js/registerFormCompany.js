@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 })
 
-document.getElementById("registerFormFinish").addEventListener("submit", async (e) => {
+document.getElementById("registerFormFinishCompany").addEventListener("submit", async (e) => {
     e.preventDefault()
 
     let formData = new FormData(e.target)
@@ -17,15 +17,10 @@ document.getElementById("registerFormFinish").addEventListener("submit", async (
         data[key] = value
     })
 
-    const checkboxes = document.querySelectorAll('#registerFormFinish input[type="checkbox"]:checked');
-    const skills = Array.from(checkboxes).map(cb => cb.value);
-    data["skills"] = [...skills]
-
     let user = JSON.parse(sessionStorage.getItem("loggedUser"))
 
     let userFound = await storage.verifyUser(user)
-    await storage.saveCandidate({...userFound, title: data.title, years: data.years, phone: data.phone, skills})
-    window.location.replace("./../pages/canditateProfile.html")
+
+    await storage.saveCompany({...userFound, ...data})
+    window.location.replace("./../pages/companyProfile.html")
 })
-
-

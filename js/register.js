@@ -40,8 +40,10 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
     if (userFound.role === "candidate") {
         window.location.replace("./../pages/registerForm.html")
     } else {
-        window.location.replace("./../pages/companyHome.html")
+        window.location.replace("./../pages/registerFormCompany.html")
     }
+})
 
-
+document.getElementById("goesToLogin").addEventListener("click", () => {
+    window.location.href = "./../pages/login.html"
 })

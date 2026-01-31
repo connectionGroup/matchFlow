@@ -33,20 +33,10 @@
                     <div class="card">
                         <div class="card-body py-5 px-md-5">
                             <form id="registerForm">
-                                <!-- 2 column grid layout with text inputs for the first and last names -->
-                                <div class="row">
-                                    <div class="col-md-6 mb-4">
-                                        <div data-mdb-input-init class="form-outline">
-                                            <input name="firstName" type="text" id="form3Example1" class="form-control" />
-                                            <label class="form-label" for="form3Example1">First name</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mb-4">
-                                        <div data-mdb-input-init class="form-outline">
-                                            <input name="lastName" type="text" id="form3Example2" class="form-control" />
-                                            <label class="form-label" for="form3Example2">Last name</label>
-                                        </div>
-                                    </div>
+                                <!-- Name input -->
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <input name="name" type="text" id="name" class="form-control" />
+                                    <label class="form-label" for="name">Name</label>
                                 </div>
 
                                 <!-- Email input -->
@@ -55,6 +45,7 @@
                                     <label class="form-label" for="form3Example3">Email address</label>
                                 </div>
 
+                                <!-- Rol input -->
                                 <div data-mdb-input-init class="form-outline mb-4">
                                     <label class="form-label" for="role">Role</label>
                                     <select name="role" id="role" class="form-select" aria-label="Default select example">
@@ -68,6 +59,11 @@
                                 <div data-mdb-input-init class="form-outline mb-4">
                                     <input name="password" type="password" id="form3Example4" class="form-control" />
                                     <label class="form-label" for="form3Example4">Password</label>
+                                </div>
+
+                                <!-- Redirect to log in -->
+                                <div data-mdb-input-init class="form-outline mb-4 text-center">
+                                    <p><a id="goesToLogin" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Log in</a></p>
                                 </div>
 
                                 <!-- Submit button -->
