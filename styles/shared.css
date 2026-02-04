@@ -2,6 +2,7 @@
 :root {
   --primary: #6c5ce7;
   --secondary: #a29bfe;
+<<<<<<< HEAD
   --accent-color: #8279f4;
   --dark: #1e1e2f;
   --light: #f8f9fc;
@@ -13,6 +14,11 @@
   --text-secondary: #4b5563;
   --text-muted: #9ca3af;
   --modal-bg: #00000061;
+=======
+  --dark: #1e1e2f;
+  --light: #f8f9fc;
+  --gray: #6b7280;
+>>>>>>> origin/feature/candidate
   --border-radius: 12px;
 }
 
@@ -25,7 +31,11 @@
 
 body {
   background: var(--light);
+<<<<<<< HEAD
   color: var(--text-primary);
+=======
+  color: var(--dark);
+>>>>>>> origin/feature/candidate
 }
 
 .container {

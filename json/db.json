@@ -133,12 +133,5 @@
     }
   ],
   "reservations": [
-    {
-      "id": "b913",
-      "candidateId": "29c4",
-      "companyId": "4401",
-      "jobOfferId": "e829",
-      "active": true
-    }
   ]
 }
