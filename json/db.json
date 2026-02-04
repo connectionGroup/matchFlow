@@ -160,6 +160,34 @@
       "companyId": "4401",
       "jobOfferId": "e829",
       "active": false
+    },
+    {
+      "id": "37e0",
+      "candidateId": "28g4",
+      "companyId": "4401",
+      "jobOfferId": "e829",
+      "active": false
+    },
+    {
+      "id": "35a9",
+      "candidateId": "29c4",
+      "companyId": "4401",
+      "jobOfferId": "e829",
+      "active": false
+    },
+    {
+      "id": "7336",
+      "candidateId": "28g4",
+      "companyId": "4401",
+      "jobOfferId": "e829",
+      "active": false
+    },
+    {
+      "id": "75b8",
+      "candidateId": "29c4",
+      "companyId": "4401",
+      "jobOfferId": "e829",
+      "active": false
     }
   ]
 }
