@@ -128,8 +128,53 @@
   ],
   "matches": [
     {
+      "companyId": 1,
+      "jobOfferId": "2",
+      "candidateId": "1",
+      "status": "interview",
+      "id": "AdHa1UR"
+    },
+    {
+      "companyId": 1,
+      "jobOfferId": "1",
+      "candidateId": "1",
       "status": "pending",
-      "id": "c2fa"
+      "id": "fl588aY"
+    },
+    {
+      "companyId": 1,
+      "jobOfferId": "2",
+      "candidateId": "1",
+      "status": "contacted",
+      "id": "WJ9KPS6"
+    },
+    {
+      "companyId": 1,
+      "jobOfferId": "1",
+      "candidateId": "1",
+      "status": "interview",
+      "id": "Nlh7KVx"
+    },
+    {
+      "companyId": 1,
+      "jobOfferId": "2",
+      "candidateId": "1",
+      "status": "hired",
+      "id": "XVQB8sY"
+    },
+    {
+      "id": "4cb2",
+      "companyId": 1,
+      "jobOfferId": "975c",
+      "candidateId": "29c4",
+      "status": "hired"
+    },
+    {
+      "id": "6ff5",
+      "companyId": 1,
+      "jobOfferId": "e829",
+      "candidateId": "28g4",
+      "status": "hired"
     }
   ],
   "reservations": [

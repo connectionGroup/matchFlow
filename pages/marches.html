@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- Button trigger modal -->
+    <button id="startMatch" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Add new match
+    </button>
+
+    <div class="container mt-4">
+        <table class="table table-bordered" id="matchesTable">
+            <thead>
+                <tr>
+                    <th>Company ID</th>
+                    <th>Job Offer ID</th>
+                    <th>Candidate ID</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- rows dinámicas -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">New Match</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="">Select cantidates</label>
+                        <select name="" id="listCandidates" class="form-select">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Select Offert</label>
+                        <select name="" id="listOfferts" class="form-select">
+
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Select status</label>
+                        <select name="" id="status" class="form-select">
+                            <option value="pending">Pending</option>
+                            <option value="contacted">Contacted</option>
+                            <option value="interview">Interview</option>
+                            <option value="hired">Hired</option>
+                            <option value="discarded">Discarded</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveMatch">Save match</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/matches.js" type="module"></script>
+</body>
+
+</html>
