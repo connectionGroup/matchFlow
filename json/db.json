@@ -188,6 +188,20 @@
       "companyId": "4401",
       "jobOfferId": "e829",
       "active": false
+    },
+    {
+      "id": "6022",
+      "candidateId": "28g4",
+      "companyId": "4401",
+      "jobOfferId": "e829",
+      "active": false
+    },
+    {
+      "id": "707a",
+      "candidateId": "28g4",
+      "companyId": "4401",
+      "jobOfferId": "e829",
+      "active": false
     }
   ]
 }
