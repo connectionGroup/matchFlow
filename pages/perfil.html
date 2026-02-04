@@ -1,26 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil de usuario</title>
+    <link rel="stylesheet" href="../styles/perfil.css">
     <script src="../js/perfil.js" defer></script>
 </head>
+
 <body>
-    <section id="perfil"></section>
 
-    <button id="btnEditar">Editar perfil</button>
+    <header class="navbar">
+        <h1 class="logo">MatchFlow</h1>
 
-<form id="formPerfil" style="display:none;">
-    <input type="text" id="nombre" placeholder="Nombre" />
-    <input type="number" id="edad" placeholder="Edad" />
-    <input type="text" id="ciudad" placeholder="Ciudad" />
-    <input type="email" id="correo" placeholder="Correo" />
-    <textarea id="descripcion" placeholder="Descripción"></textarea>
+        <div class="logout" id="logoutBtn" title="Cerrar sesión">
+            ⎋
+        </div>
+    </header>
 
-    <button type="submit">Guardar cambios</button>
-</form>
+    <section class="hero" style="display: flex; align-items: center; justify-content: space-between;">
+        <div>
+            <h2>Tu perfil profesional</h2>
+            <p>Gestiona tu información y tu estado laboral fácilmente</p>
+        </div>
+        <button id="btnVerOfertas" class="btn-llamativo">Ver ofertas</button>
+    </section>
 
-    <section id="openToWork"></section>
+    <main class="container">
+
+        <section id="perfil" class="card"></section>
+
+        <button id="btnEditar" class="btn-primary">Editar perfil</button>
+
+        <form id="formPerfil" class="card form" style="display:none;">
+            <input type="text" id="rol" placeholder="Rol" disabled />
+            <input type="text" id="nombre" placeholder="Nombre" />
+            <input type="number" id="edad" placeholder="Edad" />
+            <input type="text" id="ciudad" placeholder="Ciudad" />
+            <input type="email" id="correo" placeholder="Correo" />
+            <textarea id="descripcion" placeholder="Descripción"></textarea>
+            <button type="submit" class="btn-primary">Guardar cambios</button>
+        </form>
+
+
+        <section id="openToWork" class="card"></section>
+
+    </main>
+    <footer class="footer">
+        <div>
+            <h3>MatchFlow</h3>
+            <p>Connecting talent and companies instantly.</p>
+        </div>
+        <div>
+            <p>© 2026 MatchFlow. All rights reserved.</p>
+        </div>
+    </footer>
+
 </body>
+
 </html>
