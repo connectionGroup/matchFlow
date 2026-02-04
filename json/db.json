@@ -21,7 +21,15 @@
       "email": "star@star.com",
       "role": "company",
       "password": "123"
+    },
+        {
+      "id": "5816",
+      "name": "TechCorp",
+      "email": "techcorp@mail.com",
+      "role": "company",
+      "password": "123"
     }
+
   ],
   "candidates": [
     {
@@ -45,15 +53,15 @@
   ],
   "companies": [
     {
+      "name": "TechCorp",
+      "email": "techcorp@mail.com",
+      "industry": "The Industry",
+      "description": "TechCorp is a technology-driven company focused on developing high-quality software solutions. We work with distributed teams and value autonomy, collaboration, and continuous learning.",
+      "catchPhrase": "Building scalable digital products for modern businesses.",
+      "logo": "https://www.svgrepo.com/show/303106/mcdonald-s-15-logo.svg",
       "id": "0574",
-      "name": "Mc'Donalds",
-      "email": "company@company.com",
       "role": "company",
-      "password": "123",
-      "industry": "ECommerce",
-      "description": "We are a beautiful company",
-      "catchPhrase": "Pls work with us",
-      "logo": "https://tse1.explicit.bing.net/th/id/OIP.CdqSbCuU2VAIqeOy9gv90wHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
+      "password": "123"
     },
     {
       "id": "5416",
