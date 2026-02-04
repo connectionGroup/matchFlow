@@ -1,53 +1,195 @@
-const API_URL = "http://localhost:4001";
+/***********************
+ * CONFIG
+ ***********************/
+const API_URL = "http://localhost:3000";
+const container = document.querySelector(".candidates-grid");
+const searchInput = document.getElementById("searchInput");
 
-export async function fetchCompanies() {
-  const response = await fetch(`${API_URL}/companies`);
-  return response.json();
-}
+/***********************
+ * SESSION (MOCK)
+ ***********************/
+const isLogged = true;
 
-export async function fetchJobOffers() {
-  const response = await fetch(`${API_URL}/jobOffers`);
-  return response.json();
-}
+const currentUser = {
+  role: "company",
+  companyId: "4401"
+};
 
-export async function saveOffer(offer){
-    const response = await fetch(`${API_URL}/jobOffers`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(offer)
-  });
+const currentJobOfferId = "e829";
 
-  return response.json();
-}
+/***********************
+ * STATE
+ ***********************/
+let candidates = [];
+let reservations = [];
 
-export async function patchOffer(offerId, updatedFields) {
+/***********************
+ * LOAD DATA
+ ***********************/
+async function loadData() {
   try {
-    const response = await fetch(`${API_URL}/jobOffers/${offerId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(updatedFields)
-    });
+    const [cRes, rRes] = await Promise.all([
+      fetch(`${API_URL}/candidates`),
+      fetch(`${API_URL}/reservations`)
+    ]);
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+    candidates = await cRes.json();
+    reservations = await rRes.json();
 
-    return await response.json();
+    renderCandidates(searchCandidates(""));
   } catch (error) {
-    console.error("Error in patchOffer:", error);
-    throw error;
+    console.error("Error loading data:", error);
   }
 }
 
+/***********************
+ * RESERVATION LOGIC
+ ***********************/
+function isCandidateReserved(candidateId) {
+  return reservations.some(
+    r => r.active === true && r.candidateId === candidateId
+  );
+}
 
-export async function deleteJobOffer(offerId) {
-  const deleted = await fetch(`${API_URL}/jobOffers/${offerId}`, {
-    method: "DELETE"
+/***********************
+ * VISIBILITY RULES
+ ***********************/
+function canSeeCandidate(candidate) {
+  if (!isLogged) return false;
+  if (currentUser.role !== "company") return false;
+  if (!candidate.openToWork) return false;
+  if (isCandidateReserved(candidate.id)) return false;
+  return true;
+}
+
+/***********************
+ * SEARCH
+ ***********************/
+function searchCandidates(text) {
+  const query = text.toLowerCase().trim();
+
+  return candidates
+    .filter(canSeeCandidate)
+    .filter(c =>
+      c.fullName.toLowerCase().includes(query) ||
+      c.title.toLowerCase().includes(query) ||
+      c.skills.some(skill =>
+        skill.toLowerCase().includes(query)
+      )
+    );
+}
+
+/***********************
+ * RESERVE
+ ***********************/
+async function reserveCandidate(candidateId) {
+  if (isCandidateReserved(candidateId)) return;
+
+  const reservation = {
+    candidateId,
+    companyId: currentUser.companyId,
+    jobOfferId: currentJobOfferId,
+    active: true
+  };
+
+  await fetch(`${API_URL}/reservations`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(reservation)
   });
 
-  return await deleted.json();
+  loadData();
 }
+
+/***********************
+ * RELEASE
+ ***********************/
+async function releaseReservation(candidateId) {
+  const reservation = reservations.find(
+    r =>
+      r.active &&
+      r.candidateId === candidateId &&
+      r.companyId === currentUser.companyId
+  );
+
+  if (!reservation) return;
+
+  await fetch(`${API_URL}/reservations/${reservation.id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ active: false })
+  });
+
+  loadData();
+}
+
+/***********************
+ * RENDER
+ ***********************/
+function renderCandidates(list) {
+  container.innerHTML = "";
+
+  if (!isLogged) {
+    container.innerHTML = "<p>Debes iniciar sesión</p>";
+    return;
+  }
+
+  if (currentUser.role !== "company") {
+    container.innerHTML = "<p>Solo las empresas pueden ver candidatos</p>";
+    return;
+  }
+
+  if (list.length === 0) {
+    container.innerHTML = "<p>No hay candidatos disponibles</p>";
+    return;
+  }
+
+  list.forEach(c => {
+    const isReserved = isCandidateReserved(c.id);
+
+    const card = document.createElement("div");
+    card.className = "candidate-card";
+
+    card.innerHTML = `
+      <h3>${c.fullName}</h3>
+      <p class="candidate-role">${c.title}</p>
+      <p class="candidate-skills">${c.skills.join(", ")}</p>
+
+      <div class="candidate-actions">
+        ${
+          isReserved
+            ? `<span class="badge">Reservado</span>
+               <button class="btn btn-secondary"
+                 onclick="releaseReservation('${c.id}')">
+                 Liberar
+               </button>`
+            : `<button class="btn btn-primary"
+                 onclick="reserveCandidate('${c.id}')">
+                 Reservar
+               </button>`
+        }
+
+        <!-- BOTÓN MATCH (SOLO VISUAL) -->
+        <button class="btn btn-success">Match</button>
+
+        <button class="btn btn-outline">Ver perfil</button>
+      </div>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+/***********************
+ * EVENTS
+ ***********************/
+if (searchInput) {
+  searchInput.addEventListener("input", e => {
+    renderCandidates(searchCandidates(e.target.value));
+  });
+}
+
+/***********************
+ * INIT
+ ***********************/
+loadData();

@@ -133,5 +133,33 @@
     }
   ],
   "reservations": [
+    {
+      "id": "f170",
+      "candidateId": "28g4",
+      "companyId": "4401",
+      "jobOfferId": "e829",
+      "active": false
+    },
+    {
+      "id": "7db7",
+      "candidateId": "28g4",
+      "companyId": "4401",
+      "jobOfferId": "e829",
+      "active": false
+    },
+    {
+      "id": "a902",
+      "candidateId": "28g4",
+      "companyId": "4401",
+      "jobOfferId": "e829",
+      "active": false
+    },
+    {
+      "id": "0834",
+      "candidateId": "29c4",
+      "companyId": "4401",
+      "jobOfferId": "e829",
+      "active": false
+    }
   ]
 }
