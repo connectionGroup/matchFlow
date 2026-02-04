@@ -5,6 +5,13 @@
   --dark: #1e1e2f;
   --light: #f8f9fc;
   --gray: #6b7280;
+  --card-color: #ffffff;
+  --btn-background:#ddd5e161;
+  --text-color: #1f2937;
+  --text-primary: #1f2933;
+  --text-secondary: #4b5563;
+  --text-muted: #9ca3af;
+  --modal-bg: #00000061;
   --border-radius: 12px;
   --bs-primary-rgb: #6c5ce7;
   --bs-text-opacity: 0.8;
@@ -20,7 +27,7 @@
 
 body {
   background: var(--light);
-  color: var(--dark);
+  color: var(--text-primary);
 }
 
 .container {
