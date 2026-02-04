@@ -1,18 +1,41 @@
 {
   "users": [
     {
-      "id": "1",
-      "name": "pedrito",
-      "email": "pedritole@gmail.com",
-      "password": "12345",
-      "rol": "empleado"
+      "id": "4df9",
+      "firstName": "Diego",
+      "lastName": "Alejandro",
+      "email": "email@email.com",
+      "role": "candidate",
+      "password": "123",
+      "status": true,
+      "edad": "20",
+      "ciudad": "Medellin",
+      "descripcion": "..."
     },
     {
-      "id": "2",
-      "name": "pepe",
-      "email": "pepe@gmail.com",
-      "password": "12345",
-      "rol": "empleador"
+      "id": "24b7",
+      "firstName": "Vero",
+      "lastName": "Martinez",
+      "email": "mail@email.com",
+      "role": "candidate",
+      "password": "123",
+      "status": true
+    },
+    {
+      "id": "2105",
+      "firstName": "Comp",
+      "lastName": "Any",
+      "email": "email@company.com",
+      "role": "company",
+      "password": "123"
+    },
+    {
+      "id": "695f",
+      "firstName": "Enter",
+      "lastName": "Prise",
+      "email": "email@enterprise.com",
+      "role": "company",
+      "password": "123"
     }
   ],
   "openToWork": [
@@ -25,36 +48,68 @@
       "status": "inactivo"
     }
   ],
-  "matchStatus": [
+  "candidates": [
     {
       "id": "1",
-      "status": "pending"
+      "fullName": "Leah Maria",
+      "title": "Frontend Developer",
+      "skills": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "experience": "2 years",
+      "openToWork": true,
+      "contact": {
+        "phone": "+573001234567",
+        "whatsapp": "https://wa.me/573001234567"
+      }
+    }
+  ],
+  "companies": [
+    {
+      "id": "1",
+      "name": "TechCorp",
+      "industry": "The Industry",
+      "description": "TechCorp is a technology-driven company focused on developing high-quality software solutions. We work with distributed teams and value autonomy, collaboration, and continuous learning.",
+      "catchPhrase": "Building scalable digital products for modern businesses.",
+      "logo": "https://www.svgrepo.com/show/303106/mcdonald-s-15-logo.svg"
+    }
+  ],
+  "jobOffers": [
+    {
+      "id": "1",
+      "companyId": "1",
+      "title": "Frontend Developer",
+      "modality": "Remote - Full Time",
+      "details": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem explicabo minus iure, ex praesentium temporibus exercitationem molestiae, repellat debitis sed quas fuga quo ipsa sapiente laboriosam, cumque quos eaque eligendi.",
+      "status": "open"
     },
     {
       "id": "2",
-      "status": "contacted"
-    },
-    {
-      "id": "3",
-      "status": "interview"
-    },
-    {
-      "id": "4",
-      "status": "hired"
-    },
-    {
-      "id": "5",
-      "status": "discarded"
+      "companyId": "1",
+      "title": "Backend Developer",
+      "modality": "Remote - Part Time",
+      "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Error eius laudantium ad laboriosam dolores dolorem perspiciatis maiores harum aliquam voluptas consectetur sint quis, neque officia exercitationem, repellendus officiis debitis repellat?",
+      "status": "open"
     }
   ],
-  "perfilProfesional": [
+  "matches": [
     {
       "id": "1",
-      "nombre": "diego",
-      "descripcion": "hola",
-      "ciudad": "envigado",
-      "edad": "20",
-      "correo": "diego@gmail.com"
+      "companyId": "1",
+      "jobOfferId": "1",
+      "candidateId": "1",
+      "status": "pending"
+    }
+  ],
+  "reservations": [
+    {
+      "id": "1",
+      "candidateId": "1",
+      "companyId": "1",
+      "jobOfferId": "1",
+      "active": true
     }
   ]
 }

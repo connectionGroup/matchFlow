@@ -1,84 +1,110 @@
-const btnEditar = document.getElementById('btnEditar');
-const formPerfil = document.getElementById('formPerfil');
+const loggedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
 
-const inputNombre = document.getElementById('nombre');
-const inputEdad = document.getElementById('edad');
-const inputCiudad = document.getElementById('ciudad');
-const inputCorreo = document.getElementById('correo');
-const inputDescripcion = document.getElementById('descripcion');
+if (!loggedUser) {
+    window.location.replace("../pages/login.html");
+}
 
-let perfilActual = null;
+const btnEditar = document.getElementById("btnEditar");
+const formPerfil = document.getElementById("formPerfil");
+
+const inputNombre = document.getElementById("nombre");
+const inputEdad = document.getElementById("edad");
+const inputCiudad = document.getElementById("ciudad");
+const inputCorreo = document.getElementById("correo");
+const inputDescripcion = document.getElementById("descripcion");
+
+const seccionPerfil = document.getElementById("perfil");
+const seccionOpen = document.getElementById("openToWork");
+const logoutBtn = document.getElementById("logoutBtn");
+
+
+logoutBtn.addEventListener("click", () => {
+    sessionStorage.removeItem("loggedUser");
+    window.location.replace("../pages/login.html");
+});
+
+async function obtenerUsuario() {
+    const response = await fetch("http://localhost:4000/users");
+    const users = await response.json();
+
+    return users.find(user => user.email === loggedUser.email);
+}
 
 async function cargarPerfil() {
-    const response = await fetch(PERFIL_URL);
-    perfilActual = await response.json();
+    const usuario = await obtenerUsuario();
+    if (!usuario) return;
 
     seccionPerfil.innerHTML = `
         <h2>Datos profesionales</h2>
-        <p><strong>Nombre:</strong> ${perfilActual.nombre}</p>
-        <p><strong>Edad:</strong> ${perfilActual.edad}</p>
-        <p><strong>Ciudad:</strong> ${perfilActual.ciudad || "No especificada"}</p>
-        <p><strong>Correo:</strong> ${perfilActual.correo}</p>
-        <p><strong>Descripción:</strong> ${perfilActual.descripcion || "Sin descripción"}</p>
+        <p><strong>Nombre:</strong> ${usuario.firstName} ${usuario.lastName}</p>
+        <p><strong>Correo:</strong> ${usuario.email}</p>
+        <p><strong>Rol:</strong> ${usuario.role}</p>
+        <p><strong>Edad:</strong> ${usuario.edad || "No especificada"}</p>
+        <p><strong>Ciudad:</strong> ${usuario.ciudad || "No especificada"}</p>
+        <p><strong>Descripción:</strong> ${usuario.descripcion || "No especificada"}</p>
     `;
 
-    // precargar formulario
-    inputNombre.value = perfilActual.nombre;
-    inputEdad.value = perfilActual.edad;
-    inputCiudad.value = perfilActual.ciudad;
-    inputCorreo.value = perfilActual.correo;
-    inputDescripcion.value = perfilActual.descripcion;
+    // Precargar formulario
+    inputNombre.value = `${usuario.firstName} ${usuario.lastName}`;
+    inputCorreo.value = usuario.email;
+    document.getElementById("rol").value = usuario.role;
+    inputEdad.value = usuario.edad || "";
+    inputCiudad.value = usuario.ciudad || "";
+    inputDescripcion.value = usuario.descripcion || "";
 }
 
+const btnVerOfertas = document.getElementById("btnVerOfertas");
 
-const seccionPerfil = document.getElementById('perfil');
-const seccionOpen = document.getElementById('openToWork');
+btnVerOfertas.addEventListener("click", () => {
+    // Cambia la URL 
+    window.location.href = "../pages/ofertas";
+});
 
-btnEditar.addEventListener('click', () => {
-    formPerfil.style.display = 
+
+
+// EDITAR PERFIL (VISUAL)
+
+btnEditar.addEventListener("click", () => {
+    formPerfil.style.display =
         formPerfil.style.display === "none" ? "block" : "none";
 });
-formPerfil.addEventListener('submit', async (e) => {
+
+formPerfil.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const cambios = {
-        nombre: inputNombre.value,
+    const usuario = await obtenerUsuario();
+    if (!usuario) return;
+
+    const nombreCompleto = inputNombre.value.trim();
+    const [firstName, ...lastNameArr] = nombreCompleto.split(" ");
+    const lastName = lastNameArr.join(" ");
+
+    const datosActualizados = {
+        firstName,
+        lastName,
+        email: inputCorreo.value,
         edad: inputEdad.value,
         ciudad: inputCiudad.value,
-        correo: inputCorreo.value,
-        descripcion: inputDescripcion.value
+        descripcion: inputDescripcion.value,
+        role: usuario.role // el rol no cambia
     };
 
-    await fetch(PERFIL_URL, {
+    await fetch(`http://localhost:4000/users/${usuario.id}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(cambios)
+        body: JSON.stringify(datosActualizados)
     });
 
+    alert("Perfil actualizado correctamente");
     formPerfil.style.display = "none";
-    cargarPerfil(); // refresca datos
+    cargarPerfil();
 });
 
 
 const OPEN_TO_WORK_URL = "http://localhost:4000/openToWork/1";
-const PERFIL_URL = "http://localhost:4000/perfilProfesional/1";
 
-async function cargarPerfil() {
-    const response = await fetch(PERFIL_URL);
-    const perfil = await response.json();
-
-    seccionPerfil.innerHTML = `
-    <h2>Datos profesionales</h2>
-        <p><strong>Nombre:</strong> ${perfil.nombre}</p>
-        <p><strong>Edad:</strong> ${perfil.edad}</p>
-        <p><strong>Ciudad:</strong> ${perfil.ciudad || "No especificada"}</p>
-        <p><strong>Correo:</strong> ${perfil.correo}</p>
-        <p><strong>Descripción:</strong> ${perfil.descripcion || "Sin descripción"}</p>
-    `;
-    
-}
 async function cargarOpenToWork() {
     const response = await fetch(OPEN_TO_WORK_URL);
     const data = await response.json();
@@ -87,18 +113,21 @@ async function cargarOpenToWork() {
 
     seccionOpen.innerHTML = `
         <h2>Open to Work</h2>
-        <p>Estado actual: 
+        <p>Estado actual:
             <strong style="color:${activo ? "green" : "red"}">
                 ${data.status}
             </strong>
         </p>
-        <button onclick="toggleOpenToWork('${data.status}')">
+        <button id="toggleOpen">
             ${activo ? "Desactivar" : "Activar"}
         </button>
     `;
+
+    document.getElementById("toggleOpen").addEventListener("click", () =>
+        toggleOpenToWork(data.status)
+    );
 }
 
-// Activar / Desactivar Open To Work
 async function toggleOpenToWork(estadoActual) {
     const nuevoEstado = estadoActual === "activo" ? "inactivo" : "activo";
 
@@ -107,14 +136,11 @@ async function toggleOpenToWork(estadoActual) {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-            status: nuevoEstado
-        })
+        body: JSON.stringify({ status: nuevoEstado })
     });
 
-    cargarOpenToWork(); 
+    cargarOpenToWork();
 }
-
 
 cargarPerfil();
 cargarOpenToWork();
