@@ -2,7 +2,7 @@ const API_URL = "http://localhost:4001";
 
 export async function verifyUser(user) {
     try {
-        const response = await fetch('http://localhost:4001/users'); // Await the response
+        const response = await fetch(`${API_URL}/users`); // Await the response
         const data = await response.json(); // Await the JSON parsing
         console.log(data);
 
@@ -22,7 +22,7 @@ export async function verifyUser(user) {
 
 export async function saveUser(user) {
     try {
-        const response = await fetch('http://localhost:4001/users', {
+        const response = await fetch(`${API_URL}/users`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -41,7 +41,7 @@ export async function saveUser(user) {
 
 export async function saveCandidate(candidate) {
     try {
-        const response = await fetch('http://localhost:4001/candidates', {
+        const response = await fetch(`${API_URL}/candidates`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -60,7 +60,7 @@ export async function saveCandidate(candidate) {
 
 export async function saveCompany(company) {
     try {
-        const response = await fetch('http://localhost:4001/companies', {
+        const response = await fetch(`${API_URL}/companies`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

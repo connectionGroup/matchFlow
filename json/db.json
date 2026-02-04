@@ -9,9 +9,16 @@
       "status": true
     },
     {
-      "id": "d471",
+      "id": "0574",
       "name": "Mc'Donalds",
       "email": "company@company.com",
+      "role": "company",
+      "password": "123"
+    },
+    {
+      "id": "5416",
+      "name": "Starbooks",
+      "email": "star@star.com",
       "role": "company",
       "password": "123"
     }
@@ -38,7 +45,7 @@
   ],
   "companies": [
     {
-      "id": "d471",
+      "id": "0574",
       "name": "Mc'Donalds",
       "email": "company@company.com",
       "role": "company",
@@ -46,13 +53,24 @@
       "industry": "ECommerce",
       "description": "We are a beautiful company",
       "catchPhrase": "Pls work with us",
-      "urlImage": "https://tse1.explicit.bing.net/th/id/OIP.CdqSbCuU2VAIqeOy9gv90wHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
+      "logo": "https://tse1.explicit.bing.net/th/id/OIP.CdqSbCuU2VAIqeOy9gv90wHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
+    },
+    {
+      "id": "5416",
+      "name": "Starbooks",
+      "email": "star@star.com",
+      "role": "company",
+      "password": "123",
+      "industry": "Coffee",
+      "description": "We sell coffee",
+      "catchPhrase": "Pls drink coffee",
+      "logo": "https://tse1.explicit.bing.net/th/id/OIP.CdqSbCuU2VAIqeOy9gv90wHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
     }
   ],
   "jobOffers": [
     {
       "id": "1",
-      "companyId": "1",
+      "companyId": "0574",
       "title": "Frontend Developer",
       "modality": "Remote - Full Time",
       "details": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem explicabo minus iure, ex praesentium temporibus exercitationem molestiae, repellat debitis sed quas fuga quo ipsa sapiente laboriosam, cumque quos eaque eligendi.",
@@ -60,10 +78,26 @@
     },
     {
       "id": "2",
-      "companyId": "1",
+      "companyId": "0574",
       "title": "Backend Developer",
       "modality": "Remote - Part Time",
       "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Error eius laudantium ad laboriosam dolores dolorem perspiciatis maiores harum aliquam voluptas consectetur sint quis, neque officia exercitationem, repellendus officiis debitis repellat?",
+      "status": "open"
+    },
+    {
+      "id": "f387",
+      "companyId": "0574",
+      "title": "Verito",
+      "details": "uuwuwuwuwuwu",
+      "modality": "remote-fulltime",
+      "status": "open"
+    },
+    {
+      "id": "721e",
+      "companyId": "5416",
+      "title": "Barista",
+      "details": "Make coffee for customers",
+      "modality": "site-fulltime",
       "status": "open"
     }
   ],

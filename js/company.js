@@ -20,6 +20,15 @@ const companyId = companyObj.id;
 let currentCardId = null;
 
 document.addEventListener("DOMContentLoaded", async () => {
+  let loggedUser = JSON.parse(sessionStorage.getItem("loggedUser"))
+  if (loggedUser) {
+    if (loggedUser.role !== "company") {
+      window.location.replace("./../pages/candidate.html")
+    }
+  } else {
+    window.location.replace("./../pages/login.html")
+  }
+
   const companies = await fetchCompanies();
   const jobOffers = await fetchJobOffers();
 
@@ -61,6 +70,7 @@ function renderProfile(company) {
 }
 
 function renderOffers(offers) {
+  outputOffers.innerHTML = ``
   offers.forEach((job) => {
     const jobOffer = document.createElement("section");
     jobOffer.classList.add("job-card");
@@ -128,7 +138,7 @@ function offerModal(mode, card) {
   });
 
   window.addEventListener("click", function (event) {
-    if (event.target == modal) {
+    if (event.target === modal) {
       modal.style.display = "none";
     }
   });
@@ -170,13 +180,13 @@ outputOffers.addEventListener("click", async (e) => {
 });
 
 const form = document.getElementById("create-form");
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
   const offer = new FormData(form);
   if (modal.querySelector("h3").textContent === "New Job Offer") {
-    createOffer(getInput(offer));
+    await createOffer(getInput(offer));
   } else {
-    updateOffer(currentCardId, getInput(offer));
+    await updateOffer(currentCardId, getInput(offer));
   }
   modal.style.display = "none";
 });
@@ -192,17 +202,19 @@ function getInput(inputOffer) {
   return offer;
 }
 
-function createOffer(offer) {
-  saveNewOffer(offer);
+async function createOffer(offer) {
+  await saveNewOffer(offer);
 }
 
 async function saveNewOffer(offer) {
   await saveOffer(offer);
+  renderOffers(await getOffers(await fetchJobOffers(), companyId))
 }
 
 async function updateOffer(offerId, data) {
   try {
-    const result = await patchOffer(offerId, data);
+    await patchOffer(offerId, data);
+    renderOffers(await getOffers(await fetchJobOffers(), companyId))
   } catch (error) {
     console.error("Error updating offer:", await error);
   }
@@ -210,5 +222,6 @@ async function updateOffer(offerId, data) {
 
 async function deleteOffer(offerId) {
   if (!offerId) return;
-  return await deleteJobOffer(offerId);
+  await deleteJobOffer(offerId);
+  renderOffers(await getOffers(await fetchJobOffers(), companyId))
 }

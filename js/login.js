@@ -33,7 +33,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     if (userFound.role === "candidate") {
         window.location.replace("./../pages/candidateHome.html")
     } else {
-        window.location.replace("./../pages/companyHome.html")
+        window.location.replace("./../pages/company.html")
     }
 })
 

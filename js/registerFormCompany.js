@@ -22,5 +22,5 @@ document.getElementById("registerFormFinishCompany").addEventListener("submit", 
     let userFound = await storage.verifyUser(user)
 
     await storage.saveCompany({...userFound, ...data})
-    window.location.replace("./../pages/companyProfile.html")
+    window.location.replace("./../pages/company.html")
 })
