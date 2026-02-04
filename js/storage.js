@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:4001";
+const API_URL = "http://localhost:3001";
 
 export async function fetchCompanies() {
   const response = await fetch(`${API_URL}/companies`);
