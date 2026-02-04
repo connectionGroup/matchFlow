@@ -82,7 +82,7 @@
       "modality": "Remote - Full Time",
       "details": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem explicabo minus iure, ex praesentium temporibus exercitationem molestiae, repellat debitis sed quas fuga quo ipsa sapiente laboriosam, cumque quos eaque eligendi.",
       "status": "open",
-      "id": "e829",
+      "id": "a100",
       "companyId": "4401"
     },
     {
@@ -90,7 +90,7 @@
       "modality": "Remote - Full Time",
       "details": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem explicabo minus iure, ex praesentium temporibus exercitationem molestiae, repellat debitis sed quas fuga quo ipsa sapiente laboriosam, cumque quos eaque eligendi.",
       "status": "open",
-      "id": "e829",
+      "id": "x286",
       "companyId": "4401"
     },
     {
@@ -131,7 +131,7 @@
       "companyId": 1,
       "jobOfferId": "2",
       "candidateId": "1",
-      "status": "interview",
+      "status": "contacted",
       "id": "AdHa1UR"
     },
     {
@@ -163,90 +163,12 @@
       "id": "XVQB8sY"
     },
     {
-      "id": "4cb2",
-      "companyId": 1,
-      "jobOfferId": "975c",
-      "candidateId": "29c4",
-      "status": "hired"
-    },
-    {
-      "id": "6ff5",
-      "companyId": 1,
+      "id": "5c09",
+      "companyId": "4401",
       "jobOfferId": "e829",
       "candidateId": "28g4",
-      "status": "hired"
+      "status": "pending"
     }
   ],
-  "reservations": [
-    {
-      "id": "f170",
-      "candidateId": "28g4",
-      "companyId": "4401",
-      "jobOfferId": "e829",
-      "active": false
-    },
-    {
-      "id": "7db7",
-      "candidateId": "28g4",
-      "companyId": "4401",
-      "jobOfferId": "e829",
-      "active": false
-    },
-    {
-      "id": "a902",
-      "candidateId": "28g4",
-      "companyId": "4401",
-      "jobOfferId": "e829",
-      "active": false
-    },
-    {
-      "id": "0834",
-      "candidateId": "29c4",
-      "companyId": "4401",
-      "jobOfferId": "e829",
-      "active": false
-    },
-    {
-      "id": "37e0",
-      "candidateId": "28g4",
-      "companyId": "4401",
-      "jobOfferId": "e829",
-      "active": false
-    },
-    {
-      "id": "35a9",
-      "candidateId": "29c4",
-      "companyId": "4401",
-      "jobOfferId": "e829",
-      "active": false
-    },
-    {
-      "id": "7336",
-      "candidateId": "28g4",
-      "companyId": "4401",
-      "jobOfferId": "e829",
-      "active": false
-    },
-    {
-      "id": "75b8",
-      "candidateId": "29c4",
-      "companyId": "4401",
-      "jobOfferId": "e829",
-      "active": false
-    },
-    {
-      "id": "6022",
-      "candidateId": "28g4",
-      "companyId": "4401",
-      "jobOfferId": "e829",
-      "active": false
-    },
-    {
-      "id": "707a",
-      "candidateId": "28g4",
-      "companyId": "4401",
-      "jobOfferId": "e829",
-      "active": false
-    }
-  ]
+  "reservations": []
 }

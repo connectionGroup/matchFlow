@@ -20,6 +20,7 @@ const currentJobOfferId = "e829";
 /***********************
  * STATE
  ***********************/
+
 let candidates = [];
 let reservations = [];
 
@@ -100,6 +101,24 @@ async function reserveCandidate(candidateId) {
 
   loadData();
 }
+async function createMatch(candidateId) {
+  const match = {
+    companyId: currentUser.companyId,
+    jobOfferId: currentJobOfferId,
+    candidateId: candidateId,
+    status: "pending"
+  };
+
+  await fetch(`${API_URL}/matches`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(match)
+  });
+
+  // redirige a la página donde está la tabla
+  window.location.href = "../pages/marches.html";
+}
+
 
 /***********************
  * RELEASE
@@ -125,7 +144,7 @@ async function releaseReservation(candidateId) {
 
 /***********************
  * RENDER
- ***********************/
+***********************/
 function renderCandidates(list) {
   container.innerHTML = "";
 
@@ -151,29 +170,32 @@ function renderCandidates(list) {
     card.className = "candidate-card";
 
     card.innerHTML = `
-      <h3>${c.fullName}</h3>
-      <p class="candidate-role">${c.title}</p>
-      <p class="candidate-skills">${c.skills.join(", ")}</p>
+    <h3>${c.fullName}</h3>
+    <p class="candidate-role">${c.title}</p>
+    <p class="candidate-skills">${c.skills.join(", ")}</p>
+    
+    <div class="candidate-actions">
+    ${isReserved
+        ? `<span class="badge">Reservado</span>
+      <button class="btn btn-secondary"
+      onclick="releaseReservation('${c.id}')">
+      Liberar
+      </button>`
+        : `<button class="btn btn-primary"
+      onclick="reserveCandidate('${c.id}')">
+      Reservar
+      </button>`
+      }
+    
+    <!-- BOTÓN MATCH (SOLO VISUAL) -->
+    <button class="btn btn-success"
+      onclick="createMatch('${c.id}')">
+      Match
+    </button>
 
-      <div class="candidate-actions">
-        ${
-          isReserved
-            ? `<span class="badge">Reservado</span>
-               <button class="btn btn-secondary"
-                 onclick="releaseReservation('${c.id}')">
-                 Liberar
-               </button>`
-            : `<button class="btn btn-primary"
-                 onclick="reserveCandidate('${c.id}')">
-                 Reservar
-               </button>`
-        }
-
-        <!-- BOTÓN MATCH (SOLO VISUAL) -->
-        <button class="btn btn-success">Match</button>
-
-        <button class="btn btn-outline">Ver perfil</button>
-      </div>
+    
+    <button class="btn btn-outline">Ver perfil</button>
+    </div>
     `;
 
     container.appendChild(card);
