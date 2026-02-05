@@ -1,56 +1,29 @@
 {
   "users": [
     {
-      "id": "4df9",
-      "firstName": "Diego",
-      "lastName": "Alejandro",
-      "email": "email@email.com",
+      "email": "leah@mail.com",
+      "password": "123456",
       "role": "candidate",
-      "password": "123",
-      "status": true,
-      "edad": "20",
-      "ciudad": "Medellin",
-      "descripcion": "..."
+      "candidateId": "1",
+      "id": "2f5a"
     },
     {
-      "id": "24b7",
-      "firstName": "Vero",
-      "lastName": "Martinez",
-      "email": "mail@email.com",
-      "role": "candidate",
-      "password": "123",
-      "status": true
-    },
-    {
-      "id": "2105",
-      "firstName": "Comp",
-      "lastName": "Any",
-      "email": "email@company.com",
+      "email": "techcorp@mail.com",
+      "password": "123456",
       "role": "company",
-      "password": "123"
+      "companyId": "1",
+      "id": "f92c"
     },
     {
-      "id": "695f",
-      "firstName": "Enter",
-      "lastName": "Prise",
-      "email": "email@enterprise.com",
+      "email": "company@mail.com",
+      "password": "123456",
       "role": "company",
-      "password": "123"
-    }
-  ],
-  "openToWork": [
-    {
-      "id": "1",
-      "status": "activo"
-    },
-    {
-      "id": "2",
-      "status": "inactivo"
+      "companyId": "1",
+      "id": "f82c"
     }
   ],
   "candidates": [
     {
-      "id": "1",
       "fullName": "Leah Maria",
       "title": "Frontend Developer",
       "skills": [
@@ -63,53 +36,139 @@
       "contact": {
         "phone": "+573001234567",
         "whatsapp": "https://wa.me/573001234567"
-      }
+      },
+      "id": "29c4"
+    },
+    {
+      "fullName": "Andres higuita",
+      "title": "Backend Developer",
+      "skills": [
+        "PHP",
+        "C#",
+        "Java"
+      ],
+      "experience": "2 years",
+      "openToWork": true,
+      "contact": {
+        "phone": "+573001234567",
+        "whatsapp": "https://wa.me/573001234567"
+      },
+      "id": "28g4"
     }
   ],
   "companies": [
     {
-      "id": "1",
       "name": "TechCorp",
+      "email": "techcorp@mail.com",
       "industry": "The Industry",
       "description": "TechCorp is a technology-driven company focused on developing high-quality software solutions. We work with distributed teams and value autonomy, collaboration, and continuous learning.",
       "catchPhrase": "Building scalable digital products for modern businesses.",
-      "logo": "https://www.svgrepo.com/show/303106/mcdonald-s-15-logo.svg"
+      "logo": "https://www.svgrepo.com/show/303106/mcdonald-s-15-logo.svg",
+      "id": "4401"
+    },
+    {
+      "name": "The Company",
+      "email": "company@mail.com",
+      "industry": "The Industry",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem esse reiciendis excepturi atque, labore reprehenderit? Qui quibusdam reiciendis repudiandae aut! Distinctio, iure rerum quibusdam temporibus veritatis quos mollitia debitis dolorum.",
+      "catchPhrase": "",
+      "logo": "https://www.svgrepo.com/show/303106/mcdonald-s-15-logo.svg",
+      "id": "4907"
     }
   ],
   "jobOffers": [
     {
-      "id": "1",
-      "companyId": "1",
       "title": "Frontend Developer",
       "modality": "Remote - Full Time",
       "details": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem explicabo minus iure, ex praesentium temporibus exercitationem molestiae, repellat debitis sed quas fuga quo ipsa sapiente laboriosam, cumque quos eaque eligendi.",
-      "status": "open"
+      "status": "open",
+      "id": "a100",
+      "companyId": "4401"
     },
     {
-      "id": "2",
-      "companyId": "1",
+      "title": "Frontend Developer",
+      "modality": "Remote - Full Time",
+      "details": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem explicabo minus iure, ex praesentium temporibus exercitationem molestiae, repellat debitis sed quas fuga quo ipsa sapiente laboriosam, cumque quos eaque eligendi.",
+      "status": "open",
+      "id": "x286",
+      "companyId": "4401"
+    },
+    {
       "title": "Backend Developer",
       "modality": "Remote - Part Time",
       "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Error eius laudantium ad laboriosam dolores dolorem perspiciatis maiores harum aliquam voluptas consectetur sint quis, neque officia exercitationem, repellendus officiis debitis repellat?",
-      "status": "open"
+      "status": "open",
+      "id": "7510",
+      "companyId": "4401"
+    },
+    {
+      "title": "Frontend Developer",
+      "modality": "Remote - Part Time",
+      "details": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem explicabo minus iure, ex praesentium temporibus exercitationem molestiae, repellat debitis sed quas fuga quo ipsa sapiente laboriosam, cumque quos eaque eligendi.",
+      "status": "open",
+      "id": "375c",
+      "companyId": "4907"
+    },
+    {
+      "title": "QA",
+      "modality": "Remote - Part Time",
+      "details": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem explicabo minus iure, ex praesentium temporibus exercitationem molestiae, repellat debitis sed quas fuga quo ipsa sapiente laboriosam, cumque quos eaque eligendi.",
+      "status": "open",
+      "id": "975c",
+      "companyId": "4907"
+    },
+    {
+      "title": "Frontend Developer",
+      "modality": "Remote - Part Time",
+      "details": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem explicabo minus iure, ex praesentium temporibus exercitationem molestiae, repellat debitis sed quas fuga quo ipsa sapiente laboriosam, cumque quos eaque eligendi.",
+      "status": "open",
+      "id": "876c",
+      "companyId": "4401"
     }
   ],
   "matches": [
     {
-      "id": "1",
-      "companyId": "1",
+      "companyId": 1,
+      "jobOfferId": "2",
+      "candidateId": "1",
+      "status": "interview",
+      "id": "AdHa1UR"
+    },
+    {
+      "companyId": 1,
       "jobOfferId": "1",
       "candidateId": "1",
+      "status": "pending",
+      "id": "fl588aY"
+    },
+    {
+      "companyId": 1,
+      "jobOfferId": "2",
+      "candidateId": "1",
+      "status": "contacted",
+      "id": "WJ9KPS6"
+    },
+    {
+      "companyId": 1,
+      "jobOfferId": "1",
+      "candidateId": "1",
+      "status": "interview",
+      "id": "Nlh7KVx"
+    },
+    {
+      "id": "5c09",
+      "companyId": "4401",
+      "jobOfferId": "e829",
+      "candidateId": "28g4",
       "status": "pending"
+    },
+    {
+      "id": "0878",
+      "companyId": "4401",
+      "jobOfferId": "x286",
+      "candidateId": "28g4",
+      "status": "hired"
     }
   ],
-  "reservations": [
-    {
-      "id": "1",
-      "candidateId": "1",
-      "companyId": "1",
-      "jobOfferId": "1",
-      "active": true
-    }
-  ]
+  "reservations": []
 }
