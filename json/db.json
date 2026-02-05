@@ -89,6 +89,13 @@
       "password": "123",
       "role": "candidate",
       "candidateId": "b02a"
+    },
+    {
+      "id": "b849",
+      "email": "asdsaddsa@gmail.comsss",
+      "password": "123",
+      "role": "company",
+      "companyId": "3b12"
     }
   ],
   "candidates": [
@@ -245,6 +252,15 @@
       "name": "111",
       "email": "juandagarji@gmail.comm",
       "description": "adsad",
+      "industry": "",
+      "catchPhrase": "",
+      "logo": "https://www.svgrepo.com/show/303106/mcdonald-s-15-logo.svg"
+    },
+    {
+      "id": "3b12",
+      "name": "asd",
+      "email": "asdsaddsa@gmail.comsss",
+      "description": "asdasd",
       "industry": "",
       "catchPhrase": "",
       "logo": "https://www.svgrepo.com/show/303106/mcdonald-s-15-logo.svg"

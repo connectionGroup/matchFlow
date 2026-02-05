@@ -1,3 +1,18 @@
+// js/company.js
+import { protectPage } from "./../js/auth.js";
+
+// Solo "company" puede acceder
+const user = protectPage(["company"]);
+
+if (user) {
+    console.log("Bienvenido empresa:", user.email);
+}
+
+
+if (user) {
+    console.log("Bienvenido empresa:", user.email);
+}
+
 import {
   fetchCompanies,
   fetchJobOffers,
