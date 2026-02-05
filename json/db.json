@@ -1,6 +1,12 @@
 {
   "users": [
     {
+      "id": "1",
+      "email": "admin@admin.com",
+      "password": "admin123",
+      "role": "admin"
+    },
+    {
       "email": "leah@mail.com",
       "password": "123456",
       "role": "candidate",
@@ -20,6 +26,69 @@
       "role": "company",
       "companyId": "1",
       "id": "f82c"
+    },
+    {
+      "id": "5e92",
+      "email": "juandagarji@gmail.com",
+      "password": "123",
+      "role": "candidate",
+      "candidateId": "ffed"
+    },
+    {
+      "id": "4570",
+      "email": "juandagarji@gmail.comm",
+      "password": "123",
+      "role": "company",
+      "companyId": "898c"
+    },
+    {
+      "id": "9b11",
+      "email": "asda@gmail.com",
+      "password": "123",
+      "role": "candidate",
+      "candidateId": "78ca"
+    },
+    {
+      "id": "683d",
+      "email": "sdffsd@gmail.com",
+      "password": "123",
+      "role": "candidate",
+      "candidateId": "5125"
+    },
+    {
+      "id": "5c22",
+      "email": "asda@gmail.comc",
+      "password": "123",
+      "role": "candidate",
+      "candidateId": "5e9d"
+    },
+    {
+      "id": "0832",
+      "email": "asdadsda@gmail.com",
+      "password": "123",
+      "role": "candidate",
+      "candidateId": "c9e7"
+    },
+    {
+      "id": "f0f1",
+      "email": "asdsaddsa@gmail.com",
+      "password": "123",
+      "role": "candidate",
+      "candidateId": "6bf6"
+    },
+    {
+      "id": "2b95",
+      "email": "asdsaddsa@gmail.coms",
+      "password": "123",
+      "role": "candidate",
+      "candidateId": "b795"
+    },
+    {
+      "id": "040f",
+      "email": "asdsaddsa@gmail.comm",
+      "password": "123",
+      "role": "candidate",
+      "candidateId": "b02a"
     }
   ],
   "candidates": [
@@ -54,6 +123,102 @@
         "whatsapp": "https://wa.me/573001234567"
       },
       "id": "28g4"
+    },
+    {
+      "id": "ffed",
+      "fullName": "juan david",
+      "title": "",
+      "skills": [],
+      "experience": "",
+      "openToWork": true,
+      "contact": {
+        "phone": "",
+        "whatsapp": ""
+      }
+    },
+    {
+      "id": "78ca",
+      "fullName": "asd asd",
+      "title": "",
+      "skills": [],
+      "experience": "",
+      "openToWork": true,
+      "contact": {
+        "phone": "",
+        "whatsapp": ""
+      }
+    },
+    {
+      "id": "5125",
+      "fullName": "efsaf sdf",
+      "title": "",
+      "skills": [],
+      "experience": "",
+      "openToWork": true,
+      "contact": {
+        "phone": "",
+        "whatsapp": ""
+      }
+    },
+    {
+      "id": "5e9d",
+      "fullName": "ad ad",
+      "title": "",
+      "skills": [],
+      "experience": "",
+      "openToWork": true,
+      "contact": {
+        "phone": "",
+        "whatsapp": ""
+      }
+    },
+    {
+      "id": "c9e7",
+      "fullName": "asdasd asda",
+      "title": "",
+      "skills": [],
+      "experience": "",
+      "openToWork": true,
+      "contact": {
+        "phone": "",
+        "whatsapp": ""
+      }
+    },
+    {
+      "id": "6bf6",
+      "fullName": "asdasd asdasd",
+      "title": "",
+      "skills": [],
+      "experience": "",
+      "openToWork": true,
+      "contact": {
+        "phone": "",
+        "whatsapp": ""
+      }
+    },
+    {
+      "id": "b795",
+      "fullName": "s sdavid",
+      "title": "",
+      "skills": [],
+      "experience": "",
+      "openToWork": true,
+      "contact": {
+        "phone": "",
+        "whatsapp": ""
+      }
+    },
+    {
+      "id": "b02a",
+      "fullName": "efsaf asdasd",
+      "title": "",
+      "skills": [],
+      "experience": "",
+      "openToWork": true,
+      "contact": {
+        "phone": "",
+        "whatsapp": ""
+      }
     }
   ],
   "companies": [
@@ -74,6 +239,15 @@
       "catchPhrase": "",
       "logo": "https://www.svgrepo.com/show/303106/mcdonald-s-15-logo.svg",
       "id": "4907"
+    },
+    {
+      "id": "898c",
+      "name": "111",
+      "email": "juandagarji@gmail.comm",
+      "description": "adsad",
+      "industry": "",
+      "catchPhrase": "",
+      "logo": "https://www.svgrepo.com/show/303106/mcdonald-s-15-logo.svg"
     }
   ],
   "jobOffers": [
