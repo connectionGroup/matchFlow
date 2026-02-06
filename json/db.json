@@ -321,7 +321,7 @@
       "companyId": 1,
       "jobOfferId": "2",
       "candidateId": "1",
-      "status": "contacted",
+      "status": "interview",
       "id": "AdHa1UR"
     },
     {
@@ -346,18 +346,18 @@
       "id": "Nlh7KVx"
     },
     {
-      "companyId": 1,
-      "jobOfferId": "2",
-      "candidateId": "1",
-      "status": "hired",
-      "id": "XVQB8sY"
-    },
-    {
       "id": "5c09",
       "companyId": "4401",
       "jobOfferId": "e829",
       "candidateId": "28g4",
       "status": "pending"
+    },
+    {
+      "id": "0878",
+      "companyId": "4401",
+      "jobOfferId": "x286",
+      "candidateId": "2f5a",
+      "status": "hired"
     }
   ],
   "reservations": []
