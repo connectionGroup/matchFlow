@@ -1,4 +1,4 @@
-    const BASE_URL = "http://localhost:4001";
+    const BASE_URL = "http://localhost:3001";
 
     /* GET */
     export async function getData(endpoint) {
