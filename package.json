@@ -1,24 +1,6 @@
 {
-  "name": "matchflow",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "json-server --watch json/db.json --port 4001"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/connectionGroup/matchFlow.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/connectionGroup/matchFlow/issues"
-  },
-  "homepage": "https://github.com/connectionGroup/matchFlow#readme",
-  "devDependencies": {
-    "json-server": "^1.0.0-beta.5"
+  "dependencies": {
+    "json-server": "^1.0.0-beta.5",
+    "node": "^25.6.0"
   }
 }
