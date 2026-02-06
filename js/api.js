@@ -58,3 +58,41 @@
         localStorage.removeItem("user");
         window.location.href = "login.html";
     }
+
+// --- LÓGICA DE NEGOCIO: PLANES ---
+
+const PLAN_LIMITS = {
+    'free': 1,
+    'pro1': 2,
+    'pro2': 5
+};
+
+export async function checkCandidateAvailability(candidateId) {
+    try {
+        // 1. Obtener datos del candidato para ver su plan
+        const candidate = await getData(`candidates/${candidateId}`);
+        const userPlan = candidate.plan || 'free'; 
+        const maxSlots = PLAN_LIMITS[userPlan];
+
+        // 2. CAMBIO AQUÍ: Ahora buscamos en la tabla 'reservations'
+        const reservations = await getData(`reservations?candidateId=${candidateId}`);
+        
+        // Contamos cuántas reservas activas tiene
+        const usedSlots = reservations.length;
+
+        // 3. Validar
+        return {
+            canReserve: usedSlots < maxSlots,
+            currentPlan: userPlan,
+            usedSlots: usedSlots,
+            maxSlots: maxSlots,
+            message: usedSlots < maxSlots 
+                ? "Disponible para reserva" 
+                : `Límite de reservas alcanzado (${usedSlots}/${maxSlots}).`
+        };
+
+    } catch (error) {
+        console.error("Error validando disponibilidad:", error);
+        return { canReserve: false, message: "Error de servidor" };
+    }
+}

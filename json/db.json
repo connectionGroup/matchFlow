@@ -101,6 +101,7 @@
   "candidates": [
     {
       "fullName": "Leah Maria",
+      "plan": "free",
       "title": "Frontend Developer",
       "skills": [
         "HTML",
@@ -117,6 +118,7 @@
     },
     {
       "fullName": "Andres higuita",
+      "plan": "pro1",
       "title": "Backend Developer",
       "skills": [
         "PHP",
@@ -134,18 +136,24 @@
     {
       "id": "ffed",
       "fullName": "juan david",
-      "title": "",
-      "skills": [],
-      "experience": "",
+      "plan": "free",
+      "title": "Analisis de Datos",
+      "skills": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "experience": "5 años",
       "openToWork": true,
       "contact": {
-        "phone": "",
+        "phone": "2063446",
         "whatsapp": ""
       }
     },
     {
       "id": "78ca",
       "fullName": "asd asd",
+      "plan": "free",
       "title": "",
       "skills": [],
       "experience": "",
@@ -158,6 +166,7 @@
     {
       "id": "5125",
       "fullName": "efsaf sdf",
+      "plan": "free",
       "title": "",
       "skills": [],
       "experience": "",
@@ -170,6 +179,7 @@
     {
       "id": "5e9d",
       "fullName": "ad ad",
+      "plan": "free",
       "title": "",
       "skills": [],
       "experience": "",
@@ -182,6 +192,7 @@
     {
       "id": "c9e7",
       "fullName": "asdasd asda",
+      "plan": "free",
       "title": "",
       "skills": [],
       "experience": "",
@@ -194,6 +205,7 @@
     {
       "id": "6bf6",
       "fullName": "asdasd asdasd",
+      "plan": "free",
       "title": "",
       "skills": [],
       "experience": "",
@@ -206,6 +218,7 @@
     {
       "id": "b795",
       "fullName": "s sdavid",
+      "plan": "free",
       "title": "",
       "skills": [],
       "experience": "",
@@ -218,6 +231,7 @@
     {
       "id": "b02a",
       "fullName": "efsaf asdasd",
+      "plan": "free",
       "title": "",
       "skills": [],
       "experience": "",
@@ -325,9 +339,16 @@
       "id": "AdHa1UR"
     },
     {
+      "id": "match-manual-01",
+      "companyId": "4401",
+      "jobOfferId": "a100",
+      "candidateId": "ffed",
+      "status": "pending"
+    },
+    {
       "companyId": 1,
       "jobOfferId": "1",
-      "candidateId": "1",
+      "candidateId": "ffed",
       "status": "pending",
       "id": "fl588aY"
     },
@@ -360,5 +381,13 @@
       "status": "hired"
     }
   ],
-  "reservations": []
+  "reservations": [
+    {
+      "id": "res-01",
+      "companyId": "4401",
+      "candidateId": "ffed",
+      "createdAt": "2023-10-27",
+      "status": "active"
+    }
+  ]
 }

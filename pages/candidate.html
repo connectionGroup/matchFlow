@@ -1,27 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Candidato - BUSCA</title>
+  <title>Dashboard Candidato - MatchFlow</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="../styles/candidate.css">
 </head>
 
 <body>
 
-  <nav class="navbar navbar-light shadow-sm px-4 sticky-top">
+  <nav class="navbar navbar-light shadow-sm px-4 sticky-top bg-white">
     <div class="container-fluid d-flex justify-content-between">
-      <h4 class="brand-name mb-0">MatchFlow</h4>
+      <h4 class="brand-name mb-0 text-primary fw-bold">MatchFlow</h4>
       <div class="d-flex align-items-center gap-3">
-        <span id="welcomeName" class="fw-semibold text-muted d-none d-md-block"></span>
-        <button class="btn btn-outline-danger btn-sm" id="btnLogout">
+        <span id="welcomeName" class="fw-semibold text-muted d-none d-md-block">Cargando...</span>
+        <button class="btn btn-outline-danger btn-sm" id="btnLogout" title="Cerrar Sesión">
           <i class="bi bi-box-arrow-right"></i>
         </button>
       </div>
@@ -31,93 +29,117 @@
   <div class="container-fluid mt-4">
     <div class="row">
 
-      <!-- SIDEBAR -->
       <aside class="col-lg-3 mb-4">
-        <div class="sidebar-card p-4">
+        <div class="sidebar-card p-4 bg-white rounded shadow-sm sticky-top" style="top: 80px; z-index: 100;">
 
           <div class="text-center mb-4">
-            <img src="./img/logo.png" width="50">
-            <h6 class="mt-2 fw-bold text-primary">Estado Laboral</h6>
+            <div class="bg-light rounded-circle d-inline-flex p-3 mb-2 text-primary">
+                <i class="bi bi-person-workspace fs-1"></i>
+            </div>
+            <h6 class="mt-2 fw-bold text-dark">Panel de Candidato</h6>
+            <span class="badge rounded-pill bg-secondary text-white mt-1" id="userPlanBadge">
+              <i class="bi bi-star-fill"></i> CARGANDO...
+            </span>
           </div>
 
-          <div id="statusContainer" class="status-box text-center mb-4">
+          <div class="p-3 mb-3 bg-light rounded border small">
+            <div class="d-flex justify-content-between mb-1">
+              <span class="text-muted">Reservas Activas</span>
+              <span class="fw-bold" id="reservationCounter">-/-</span>
+            </div>
+            <div class="progress" style="height: 6px;">
+              <div class="progress-bar bg-warning" id="reservationProgress" role="progressbar" style="width: 0%"></div>
+            </div>
+            <small class="d-block mt-2 text-muted fst-italic text-center" style="font-size: 0.75rem;">
+              Las empresas ocupan estos espacios al contactarte.
+            </small>
+            
+            <button class="btn btn-sm btn-warning w-100 mt-2 text-dark fw-bold" onclick="upgradePlanDemo()">
+               <i class="bi bi-arrow-up-circle"></i> Mejorar Plan
+            </button>
+          </div>
+
+          <div id="statusContainer" class="status-box text-center mb-4 p-2 rounded bg-light border">
             <div class="form-check form-switch d-flex justify-content-center">
               <input class="form-check-input" type="checkbox" id="openToWorkToggle">
             </div>
-            <span id="statusLabel" class="fw-semibold d-block mt-2">Buscando</span>
+            <span id="statusLabel" class="fw-semibold d-block mt-2 text-muted">Estado</span>
           </div>
 
           <div class="list-group sidebar-menu">
-            <button class="list-group-item active" onclick="switchTab('jobs')">
-              <i class="bi bi-briefcase"></i> Ofertas
+            <button class="list-group-item list-group-item-action active" onclick="switchTab('jobs')">
+              <i class="bi bi-briefcase me-2"></i> Ofertas
             </button>
 
-            <button class="list-group-item d-flex justify-content-between align-items-center"
+            <button class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
               onclick="switchTab('matches')">
-              <span><i class="bi bi-heart"></i> Matches</span>
-              <span class="badge bg-danger" id="matchCount">0</span>
+              <span><i class="bi bi-heart me-2"></i> Mis Solicitudes</span>
+              <span class="badge bg-danger rounded-pill" id="matchCount">0</span>
             </button>
 
-            <button class="list-group-item" onclick="switchTab('profile')">
-              <i class="bi bi-person"></i> Mi Perfil
+            <button class="list-group-item list-group-item-action" onclick="switchTab('profile')">
+              <i class="bi bi-person me-2"></i> Mi Perfil
             </button>
           </div>
 
         </div>
       </aside>
 
-      <!-- CONTENIDO -->
       <main class="col-lg-9">
 
-        <!-- JOBS -->
         <section id="view-jobs" class="view-section">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 class="fw-bold">Ofertas Recientes</h4>
-            <button class="btn btn-outline-primary btn-sm" onclick="loadJobs()">
-              <i class="bi bi-arrow-repeat"></i>
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4 class="fw-bold mb-0">Ofertas Disponibles</h4>
+            <button class="btn btn-outline-primary btn-sm" onclick="location.reload()">
+              <i class="bi bi-arrow-repeat"></i> Actualizar
             </button>
           </div>
-          <div id="jobsList" class="row g-3"></div>
-        </section>
-
-        <!-- MATCHES -->
-        <section id="view-matches" class="view-section d-none">
-          <h4 class="fw-bold mb-3">Solicitudes</h4>
-          <div class="alert alert-info small">
-            Las empresas interesadas en tu perfil aparecerán aquí.
+          <div id="jobsList" class="row g-3">
+              <div class="col-12 text-center py-5">
+                  <div class="spinner-border text-primary" role="status"></div>
+                  <p class="mt-2 text-muted">Cargando ofertas...</p>
+              </div>
           </div>
-          <div id="matchesList" class="row g-3"></div>
         </section>
 
-        <!-- PROFILE -->
+        <section id="view-matches" class="view-section d-none">
+          <h4 class="fw-bold mb-3">Mis Solicitudes</h4>
+          <div class="alert alert-light border small mb-4">
+            <i class="bi bi-info-circle me-1"></i> Aquí verás el estado de tus postulaciones a las empresas.
+          </div>
+          <div id="matchesList" class="row g-3">
+              </div>
+        </section>
+
         <section id="view-profile" class="view-section d-none">
-          <div class="profile-card p-4 position-relative">
+          <div class="profile-card p-4 position-relative bg-white rounded shadow-sm">
 
             <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-3" data-bs-toggle="modal"
               data-bs-target="#profileModal">
-              <i class="bi bi-pencil"></i>
+              <i class="bi bi-pencil me-1"></i> Editar
             </button>
 
-            <div class="text-center mb-4">
-              <div class="avatar">
+            <div class="text-center mb-5">
+              <div class="avatar bg-primary text-white rounded-circle d-inline-flex justify-content-center align-items-center mb-3" style="width: 80px; height: 80px; font-size: 2rem;">
                 <i class="bi bi-person"></i>
               </div>
-              <h3 id="profileNameDisplay">-</h3>
-              <p class="text-muted" id="profileTitleDisplay">-</p>
+              <h3 id="profileNameDisplay" class="fw-bold mb-1">-</h3>
+              <p class="text-muted mb-0" id="profileTitleDisplay">-</p>
             </div>
 
-            <div class="row g-4">
-              <div class="col-md-6">
-                <h6 class="section-title">Datos Personales</h6>
-                <p><i class="bi bi-envelope"></i> <span id="profileEmail">-</span></p>
-                <p><i class="bi bi-telephone"></i> <span id="profilePhone">-</span></p>
-                <p><i class="bi bi-geo-alt"></i> <span id="profileCity">-</span></p>
+            <div class="row g-5">
+              <div class="col-md-6 border-end">
+                <h6 class="text-uppercase text-muted fw-bold small mb-3">Información de Contacto</h6>
+                <p class="mb-2"><i class="bi bi-envelope me-2 text-primary"></i> <span id="profileEmail">-</span></p>
+                <p class="mb-2"><i class="bi bi-telephone me-2 text-primary"></i> <span id="profilePhone">-</span></p>
+                <p class="mb-0"><i class="bi bi-geo-alt me-2 text-primary"></i> <span id="profileCity">-</span></p>
               </div>
 
               <div class="col-md-6">
-                <h6 class="section-title">Perfil Profesional</h6>
-                <p><strong>Experiencia:</strong> <span id="profileExp">-</span> años</p>
-                <div id="profileSkillsContainer" class="d-flex flex-wrap gap-1"></div>
+                <h6 class="text-uppercase text-muted fw-bold small mb-3">Perfil Profesional</h6>
+                <p class="mb-3"><strong>Experiencia:</strong> <span id="profileExp">-</span></p>
+                <p class="mb-2 fw-bold small">Habilidades:</p>
+                <div id="profileSkillsContainer" class="d-flex flex-wrap gap-2"></div>
               </div>
             </div>
 
@@ -128,9 +150,82 @@
     </div>
   </div>
 
+  <div class="modal fade" id="profileModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold">Editar Perfil</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formProfile">
+            <div class="mb-3">
+              <label class="form-label small fw-bold">Nombre Completo</label>
+              <input type="text" class="form-control" id="profName" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-bold">Título Profesional</label>
+              <input type="text" class="form-control" id="profTitle" placeholder="Ej: FullStack Developer">
+            </div>
+            <div class="row">
+              <div class="col-6 mb-3">
+                <label class="form-label small fw-bold">Teléfono</label>
+                <input type="text" class="form-control" id="profPhone">
+              </div>
+              <div class="col-6 mb-3">
+                <label class="form-label small fw-bold">Experiencia (ej: 2 años)</label>
+                <input type="text" class="form-control" id="profExp">
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-bold">Habilidades (separadas por coma)</label>
+              <textarea class="form-control" id="profSkills" rows="2" placeholder="HTML, CSS, JavaScript..."></textarea>
+            </div>
+            <div class="d-flex justify-content-end gap-2 mt-4">
+              <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="jobDetailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0 pb-0">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body pt-0">
+          <div class="text-center mb-4">
+            <img id="modalJobLogo" src="" class="rounded-circle border mb-3" width="60" height="60">
+            <h5 class="modal-title fw-bold" id="modalJobTitle">-</h5>
+            <p class="text-muted small mb-0" id="modalJobCompany">-</p>
+          </div>
+          
+          <div class="mb-3">
+            <h6 class="fw-bold small text-uppercase text-primary">Modalidad</h6>
+            <span class="badge bg-light text-dark border" id="modalJobModality">-</span>
+          </div>
+
+          <div class="mb-4">
+            <h6 class="fw-bold small text-uppercase text-primary">Descripción del Puesto</h6>
+            <p class="small text-muted" id="modalJobDetails">-</p>
+          </div>
+
+          <div class="d-grid">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../js/candidate.js" defer></script>
+  
+  <script type="module" src="../js/candidate.js"></script>
 
 </body>
-
 </html>
