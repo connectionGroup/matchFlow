@@ -321,7 +321,6 @@ body {
 }
 
 .card-icon {
-    font-size: 3rem;
     min-width: 60px;
     height: 60px;
     display: flex;
@@ -330,8 +329,11 @@ body {
     background: var(--gradient);
     border-radius: var(--radius-lg);
     color: var(--white);
-    font-weight: 300;
-    letter-spacing: 0.05em;
+}
+
+.card-icon i {
+    font-size: 2rem;
+    color: var(--white);
 }
 
 .card-icon svg {
@@ -416,15 +418,23 @@ body {
 }
 
 .feature-icon {
-    font-size: 4rem;
+    width: 72px;
+    height: 72px;
     margin-bottom: var(--spacing-sm);
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+    border-radius: var(--radius-xl);
+    transition: var(--transition);
+}
+
+.feature-icon i {
+    font-size: 2.5rem;
     background: var(--gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    font-weight: 200;
-    line-height: 1;
 }
 
 .feature-icon svg {
@@ -432,6 +442,11 @@ body {
     height: 48px;
     stroke: url(#gradient);
     display: block;
+}
+
+.feature-card:hover .feature-icon {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
 }
 
 .feature-card:hover .feature-icon svg {
@@ -478,12 +493,6 @@ body {
     margin-bottom: var(--spacing-md);
 }
 
-.process-icon svg {
-    width: 40px;
-    height: 40px;
-    stroke: var(--white);
-}
-
 .process-icon {
     width: 80px;
     height: 80px;
@@ -492,9 +501,19 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 3rem;
     color: var(--white);
-    font-weight: 200;
+    box-shadow: var(--shadow-lg);
+}
+
+.process-icon i {
+    font-size: 2.5rem;
+    color: var(--white);
+}
+
+.process-icon svg {
+    width: 40px;
+    height: 40px;
+    stroke: var(--white);
 }
 
 .candidate-icon {
@@ -590,18 +609,6 @@ body {
     gap: var(--spacing-md);
 }
 
-.benefit-icon svg {
-    width: 28px;
-    height: 28px;
-    stroke: var(--white);
-}
-
-.benefit-item {
-    display: flex;
-    gap: var(--spacing-sm);
-    align-items: flex-start;
-}
-
 .benefit-icon {
     min-width: 50px;
     height: 50px;
@@ -610,9 +617,19 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.75rem;
     color: var(--white);
-    font-weight: 200;
+    flex-shrink: 0;
+}
+
+.benefit-icon i {
+    font-size: 1.5rem;
+    color: var(--white);
+}
+
+.benefit-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--white);
 }
 
 .benefit-item h4 {

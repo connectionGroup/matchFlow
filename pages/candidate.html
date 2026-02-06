@@ -4,69 +4,368 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function() {
+      const user = JSON.parse(localStorage.getItem('matchflow_user') || 'null');
+      if (!user || user.role !== 'candidate') {
+        window.location.href = '/pages/login.html';
+      }
+    })();
+  </script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="./../styles/shared.css">
-  <script type="module" src="./../js/auth.js"></script>
+  <link rel="stylesheet" href="./../styles/perfil.css">
   <title>Candidate Profile | MatchFlow</title>
+  <style>
+    .profile-card {
+      border: 2px solid #e9ecef;
+      border-radius: 16px;
+      padding: 2rem;
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .profile-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid #f8f9fa;
+    }
+
+    .profile-name {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+
+    .profile-title {
+      font-size: 1.25rem;
+      color: #6c757d;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid #f8f9fa;
+    }
+
+    .info-icon {
+      font-size: 1.5rem;
+      color: #667eea;
+      width: 40px;
+      text-align: center;
+    }
+
+    .info-label {
+      font-weight: 600;
+      color: #495057;
+      min-width: 150px;
+    }
+
+    .info-value {
+      color: #6c757d;
+    }
+
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .skill-badge {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .switch-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #28a745;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .nav-tabs .nav-link {
+      color: #6c757d;
+      font-weight: 500;
+      padding: 1rem 1.5rem;
+      border: none;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .nav-tabs .nav-link:hover {
+      border-color: #e9ecef;
+      color: #667eea;
+    }
+
+    .nav-tabs .nav-link.active {
+      color: #667eea;
+      border-bottom-color: #667eea;
+      background: transparent;
+    }
+
+    .tab-content {
+      animation: fadeIn 0.3s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #profile-form .form-label {
+      font-weight: 600;
+      color: #495057;
+      margin-bottom: 0.5rem;
+    }
+
+    #profile-form .form-control,
+    #profile-form .form-select {
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      padding: 0.75rem;
+      transition: border-color 0.3s ease;
+    }
+
+    #profile-form .form-control:focus,
+    #profile-form .form-select:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.1);
+    }
+
+    .skills-input-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .skill-tag {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .skill-tag button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+
+    .skill-tag button:hover {
+      opacity: 1;
+    }
+  </style>
 </head>
 
 <body>
-  <header>
-    <nav>
-      <h2>MatchFlow</h2>
-      <ul>
-        <li> <a href="candidate.html">Profile</a></li>
-        <li><a href="jobs.html">Jobs</a></li>
-      </ul>
-      <button id="btnLogout" class="btn btn-danger">Logout</button>
-    </nav>
-  </header>
-
-  <section class="container">
-    <div class="card">
-      <h2>Candidate Profile</h2>
-
-      <p><strong>Name:</strong> John Doe</p>
-      <p><strong>Role:</strong> Frontend Developer</p>
-      <p><strong>Skills:</strong> HTML, CSS, JavaScript</p>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="../index.html">
+        <i class="bi bi-lightning-charge-fill text-primary"></i> MatchFlow
+      </a>
+      <div class="navbar-collapse">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="candidate.html">
+              <i class="bi bi-person-circle"></i> Profile
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="plans.html">
+              <i class="bi bi-star"></i> Plans
+            </a>
+          </li>
+        </ul>
+        <button id="btnLogout" class="btn btn-outline-danger">
+          <i class="bi bi-box-arrow-right"></i> Logout
+        </button>
+      </div>
     </div>
-  </section>
+  </nav>
+
+  <div class="container my-5">
+    <!-- Navigation Tabs -->
+    <ul class="nav nav-tabs nav-fill mb-4" id="candidateTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-content" type="button" role="tab">
+          <i class="bi bi-person-circle"></i> My Profile
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="jobs-tab" data-bs-toggle="tab" data-bs-target="#jobs-content" type="button" role="tab">
+          <i class="bi bi-search"></i> Search Jobs <span class="badge bg-success ms-1" id="jobs-badge">0</span>
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="applications-tab" data-bs-toggle="tab" data-bs-target="#applications-content" type="button" role="tab">
+          <i class="bi bi-envelope-heart"></i> My Applications <span class="badge bg-primary ms-1" id="apps-badge">0</span>
+        </button>
+      </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content" id="candidateTabsContent">
+      
+      <!-- Profile Tab -->
+      <div class="tab-pane fade show active" id="profile-content" role="tabpanel">
+        <div class="profile-card" id="profile-container">
+          <div class="text-center py-5">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Jobs Search Tab -->
+      <div class="tab-pane fade" id="jobs-content" role="tabpanel">
+        <div class="profile-card">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <h3 class="mb-1"><i class="bi bi-briefcase-fill"></i> Available Job Offers</h3>
+              <p class="text-muted small mb-0">Browse and apply to open positions</p>
+            </div>
+            <span class="badge bg-success fs-5" id="offers-count">0</span>
+          </div>
+          <div id="offers-container">
+            <div class="text-center py-4">
+              <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Applications & Invitations Tab -->
+      <div class="tab-pane fade" id="applications-content" role="tabpanel">
+        <div class="profile-card">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <h3 class="mb-1"><i class="bi bi-heart-fill text-danger"></i> My Applications & Invitations</h3>
+              <p class="text-muted small mb-0">Track your applications and company invitations</p>
+            </div>
+            <span class="badge bg-primary fs-5" id="invitations-count">0</span>
+          </div>
+          <div id="invitations-container">
+            <div class="text-center py-4">
+              <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
   <footer class="site-footer">
     <div class="footer-container">
-
       <div class="footer-brand">
         <h3>MatchFlow</h3>
-        <p>Match-first hiring platform.<br>
-          Connecting talent and companies instantly.</p>
+        <p>Match-first hiring platform.<br>Connecting talent and companies instantly.</p>
       </div>
-
       <div class="footer-links">
         <h4>Product</h4>
         <a href="#">How it works</a>
         <a href="#">Pricing</a>
         <a href="#">Security</a>
       </div>
-
       <div class="footer-links">
         <h4>Company</h4>
         <a href="#">About us</a>
         <a href="#">Careers</a>
         <a href="#">Contact</a>
       </div>
-
       <div class="footer-links">
         <h4>Legal</h4>
         <a href="#">Privacy policy</a>
         <a href="#">Terms of service</a>
       </div>
-
     </div>
-
     <div class="footer-bottom">
       <p>© 2026 MatchFlow. All rights reserved.</p>
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="module" src="./../js/auth.js"></script>
+  <script type="module" src="./../js/candidate.js" defer></script>
+  <script type="module" src="./../js/logout.js" defer></script>
 </body>
 
 </html>

@@ -1,101 +1,114 @@
 {
   "users": [
     {
-      "id": "1",
       "email": "admin@admin.com",
       "password": "admin123",
-      "role": "admin"
+      "role": "admin",
+      "plan": "enterprise",
+      "id": "1"
     },
     {
       "email": "leah@mail.com",
       "password": "123456",
       "role": "candidate",
-      "candidateId": "1",
-      "id": "2f5a"
+      "candidateId": "29c4",
+      "id": "2f5a",
+      "plan": "pro1"
     },
     {
       "email": "techcorp@mail.com",
       "password": "123456",
       "role": "company",
-      "companyId": "1",
+      "companyId": "4401",
       "id": "f92c"
     },
     {
       "email": "company@mail.com",
       "password": "123456",
       "role": "company",
-      "companyId": "1",
-      "id": "f82c"
+      "companyId": "4907",
+      "id": "f82c",
+      "plan": "enterprise"
     },
     {
       "id": "5e92",
       "email": "juandagarji@gmail.com",
       "password": "123",
       "role": "candidate",
-      "candidateId": "ffed"
+      "candidateId": "ffed",
+      "plan": "free"
     },
     {
       "id": "4570",
       "email": "juandagarji@gmail.comm",
       "password": "123",
       "role": "company",
-      "companyId": "898c"
+      "companyId": "898c",
+      "plan": "business"
     },
     {
       "id": "9b11",
       "email": "asda@gmail.com",
       "password": "123",
       "role": "candidate",
-      "candidateId": "78ca"
+      "candidateId": "78ca",
+      "plan": "free"
     },
     {
       "id": "683d",
       "email": "sdffsd@gmail.com",
       "password": "123",
       "role": "candidate",
-      "candidateId": "5125"
+      "candidateId": "5125",
+      "plan": "free"
     },
     {
       "id": "5c22",
       "email": "asda@gmail.comc",
       "password": "123",
       "role": "candidate",
-      "candidateId": "5e9d"
+      "candidateId": "5e9d",
+      "plan": "free"
     },
     {
       "id": "0832",
       "email": "asdadsda@gmail.com",
       "password": "123",
       "role": "candidate",
-      "candidateId": "c9e7"
+      "candidateId": "c9e7",
+      "plan": "free"
     },
     {
       "id": "f0f1",
       "email": "asdsaddsa@gmail.com",
       "password": "123",
       "role": "candidate",
-      "candidateId": "6bf6"
+      "candidateId": "6bf6",
+      "plan": "free"
     },
     {
       "id": "2b95",
       "email": "asdsaddsa@gmail.coms",
       "password": "123",
       "role": "candidate",
-      "candidateId": "b795"
+      "candidateId": "b795",
+      "plan": "free"
     },
     {
       "id": "040f",
       "email": "asdsaddsa@gmail.comm",
       "password": "123",
       "role": "candidate",
-      "candidateId": "b02a"
+      "candidateId": "b02a",
+      "plan": "free"
     },
     {
       "id": "b849",
       "email": "asdsaddsa@gmail.comsss",
       "password": "123",
       "role": "company",
-      "companyId": "3b12"
+      "companyId": "3b12",
+      "plan": "free"
     }
   ],
   "candidates": [
@@ -113,6 +126,7 @@
         "phone": "+573001234567",
         "whatsapp": "https://wa.me/573001234567"
       },
+      "plan": "pro1",
       "id": "29c4"
     },
     {
@@ -129,6 +143,7 @@
         "phone": "+573001234567",
         "whatsapp": "https://wa.me/573001234567"
       },
+      "plan": "pro1",
       "id": "28g4"
     },
     {
@@ -141,7 +156,8 @@
       "contact": {
         "phone": "",
         "whatsapp": ""
-      }
+      },
+      "plan": "free"
     },
     {
       "id": "78ca",
@@ -153,7 +169,8 @@
       "contact": {
         "phone": "",
         "whatsapp": ""
-      }
+      },
+      "plan": "free"
     },
     {
       "id": "5125",
@@ -165,7 +182,8 @@
       "contact": {
         "phone": "",
         "whatsapp": ""
-      }
+      },
+      "plan": "free"
     },
     {
       "id": "5e9d",
@@ -177,7 +195,8 @@
       "contact": {
         "phone": "",
         "whatsapp": ""
-      }
+      },
+      "plan": "free"
     },
     {
       "id": "c9e7",
@@ -189,7 +208,8 @@
       "contact": {
         "phone": "",
         "whatsapp": ""
-      }
+      },
+      "plan": "free"
     },
     {
       "id": "6bf6",
@@ -201,7 +221,8 @@
       "contact": {
         "phone": "",
         "whatsapp": ""
-      }
+      },
+      "plan": "free"
     },
     {
       "id": "b795",
@@ -213,7 +234,8 @@
       "contact": {
         "phone": "",
         "whatsapp": ""
-      }
+      },
+      "plan": "free"
     },
     {
       "id": "b02a",
@@ -225,7 +247,8 @@
       "contact": {
         "phone": "",
         "whatsapp": ""
-      }
+      },
+      "plan": "free"
     }
   ],
   "companies": [
@@ -236,6 +259,7 @@
       "description": "TechCorp is a technology-driven company focused on developing high-quality software solutions. We work with distributed teams and value autonomy, collaboration, and continuous learning.",
       "catchPhrase": "Building scalable digital products for modern businesses.",
       "logo": "https://www.svgrepo.com/show/303106/mcdonald-s-15-logo.svg",
+      "plan": "enterprise",
       "id": "4401"
     },
     {
@@ -245,6 +269,7 @@
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem esse reiciendis excepturi atque, labore reprehenderit? Qui quibusdam reiciendis repudiandae aut! Distinctio, iure rerum quibusdam temporibus veritatis quos mollitia debitis dolorum.",
       "catchPhrase": "",
       "logo": "https://www.svgrepo.com/show/303106/mcdonald-s-15-logo.svg",
+      "plan": "enterprise",
       "id": "4907"
     },
     {
@@ -254,7 +279,8 @@
       "description": "adsad",
       "industry": "",
       "catchPhrase": "",
-      "logo": "https://www.svgrepo.com/show/303106/mcdonald-s-15-logo.svg"
+      "logo": "https://www.svgrepo.com/show/303106/mcdonald-s-15-logo.svg",
+      "plan": "business"
     },
     {
       "id": "3b12",
@@ -263,7 +289,8 @@
       "description": "asdasd",
       "industry": "",
       "catchPhrase": "",
-      "logo": "https://www.svgrepo.com/show/303106/mcdonald-s-15-logo.svg"
+      "logo": "https://www.svgrepo.com/show/303106/mcdonald-s-15-logo.svg",
+      "plan": "free"
     }
   ],
   "jobOffers": [
@@ -318,46 +345,29 @@
   ],
   "matches": [
     {
-      "companyId": 1,
-      "jobOfferId": "2",
-      "candidateId": "1",
-      "status": "contacted",
-      "id": "AdHa1UR"
-    },
-    {
-      "companyId": 1,
-      "jobOfferId": "1",
-      "candidateId": "1",
+      "companyId": "4907",
+      "jobOfferId": "975c",
+      "candidateId": "78ca",
       "status": "pending",
-      "id": "fl588aY"
+      "createdAt": "2026-02-06T05:53:31.385Z",
+      "id": 1
     },
     {
-      "companyId": 1,
-      "jobOfferId": "2",
-      "candidateId": "1",
-      "status": "contacted",
-      "id": "WJ9KPS6"
+      "companyId": "4907",
+      "jobOfferId": "375c",
+      "candidateId": "29c4",
+      "status": "pending",
+      "createdAt": "2026-02-06T05:53:38.329Z",
+      "id": 2
     },
     {
-      "companyId": 1,
-      "jobOfferId": "1",
-      "candidateId": "1",
-      "status": "interview",
-      "id": "Nlh7KVx"
-    },
-    {
-      "companyId": 1,
-      "jobOfferId": "2",
-      "candidateId": "1",
-      "status": "hired",
-      "id": "XVQB8sY"
-    },
-    {
-      "id": "5c09",
       "companyId": "4401",
-      "jobOfferId": "e829",
-      "candidateId": "28g4",
-      "status": "pending"
+      "jobOfferId": "7510",
+      "candidateId": "29c4",
+      "status": "pending",
+      "initiatedBy": "candidate",
+      "createdAt": "2026-02-06T06:10:52.258Z",
+      "id": 3
     }
   ],
   "reservations": []

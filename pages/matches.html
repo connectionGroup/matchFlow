@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      (function() {
+        const user = JSON.parse(localStorage.getItem('matchflow_user') || 'null');
+        if (!user || user.role !== 'company') {
+          window.location.href = '/pages/login.html';
+        }
+      })();
+    </script>
+    <title>Matches | MatchFlow</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./../styles/shared.css">
+    <style>
+        .matches-header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .match-card {
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .match-card:hover {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .match-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f8f9fa;
+        }
+
+        .match-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #333;
+            margin: 0;
+        }
+
+        .match-status {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .match-status.pending {
+            background: #cfe2ff;
+            color: #084298;
+        }
+
+        .match-status.contacted {
+            background: #cff4fc;
+            color: #055160;
+        }
+
+        .match-status.interview {
+            background: #fff3cd;
+            color: #664d03;
+        }
+
+        .match-status.hired {
+            background: #d1e7dd;
+            color: #0f5132;
+        }
+
+        .match-status.discarded {
+            background: #f8d7da;
+            color: #842029;
+        }
+
+        .match-info {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .match-info-item {
+            flex: 1;
+        }
+
+        .match-info-label {
+            font-size: 0.875rem;
+            color: #6c757d;
+            margin-bottom: 0.25rem;
+        }
+
+        .match-info-value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .contact-info {
+            background: #e7f3ff;
+            border-left: 4px solid #0066cc;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 4px;
+        }
+
+        .contact-info.locked {
+            background: #f8f9fa;
+            border-color: #6c757d;
+        }
+
+        .pipeline-tabs {
+            background: white;
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .pipeline-tab {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #e9ecef;
+            background: white;
+            color: #6c757d;
+            border-radius: 8px;
+            margin-right: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .pipeline-tab:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .pipeline-tab.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #6c757d;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn-action {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="../index.html">
+                <i class="bi bi-lightning-charge-fill text-primary"></i> MatchFlow
+            </a>
+            <div class="d-flex gap-3">
+                <a href="company.html" class="btn btn-outline-primary">
+                    <i class="bi bi-building"></i> My Company
+                </a>
+                <a href="candidates-search.html" class="btn btn-outline-info">
+                    <i class="bi bi-search"></i> Find Candidates
+                </a>
+                <button class="btn btn-outline-danger" id="btnLogout">
+                    <i class="bi bi-box-arrow-right"></i> Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="matches-header">
+        <div class="container">
+            <h1><i class="bi bi-heart-fill"></i> My Matches</h1>
+            <p class="lead">Manage your hiring pipeline</p>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <div class="pipeline-tabs">
+            <button class="pipeline-tab active" data-status="all">
+                <i class="bi bi-collection"></i> All Matches
+            </button>
+            <button class="pipeline-tab" data-status="pending">
+                <i class="bi bi-clock"></i> Pending
+            </button>
+            <button class="pipeline-tab" data-status="contacted">
+                <i class="bi bi-envelope-check"></i> Contacted
+            </button>
+            <button class="pipeline-tab" data-status="interview">
+                <i class="bi bi-people"></i> Interview
+            </button>
+            <button class="pipeline-tab" data-status="hired">
+                <i class="bi bi-check-circle"></i> Hired
+            </button>
+            <button class="pipeline-tab" data-status="discarded">
+                <i class="bi bi-x-circle"></i> Discarded
+            </button>
+        </div>
+
+        <div id="matchesList"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="./../js/matches.js"></script>
+    <script type="module" src="./../js/logout.js"></script>
+</body>
+</html>
